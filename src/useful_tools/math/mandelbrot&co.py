@@ -45,8 +45,8 @@ def main():
     # plt.show()
     #
     # # PIL
-    # img = Image.fromarray(np.uint8(cm.magma(pixels/np.max(pixels)) * 255))
-    # img.show()
+    img = Image.fromarray(np.uint8(cm.magma(pixels/np.max(pixels)) * 255))
+    img.show()
     ...
 
 
