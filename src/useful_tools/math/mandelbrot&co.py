@@ -1,5 +1,6 @@
 from itertools import product
 from typing import Generator
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -36,7 +37,8 @@ def main():
     #
     # pixels = numpy_mandelbrot(2800, 2240)
     # np.save('src/useful_tools/storage/mandelbrot/mandelbrot.npy', pixels)
-    # pixels = np.load('')
+    # noinspection PyTypeChecker
+    # pixels = np.load(Path(__file__).parent.parent / 'storage/mandelbrot/mandelbrot.npy')
     #
     # # Matplotlib
     # plt.imshow(pixels, cmap='inferno')
@@ -80,13 +82,13 @@ def numpy_julia(width: int, height: int, max_iter: int = 100, bounds=(-2.1, 0.7,
 
 if __name__ == '__main__':
     main()
-    # pixels = numpy_julia(2800, 2240, 256, bounds=(-2, 2, -2, 2))
-    with open('/storage/temp_numpy_file.npy', 'rb') as f:
-        # noinspection PyTypeChecker
-        # np.save(f, pixels)
-        pixels = np.load(f)
-    new_pixels = np.where((pixels == 0)[:, :, np.newaxis],
-                          np.array([208, 111, 49, 255]),
-                          cm.magma(pixels/np.max(pixels)) * 255)
-    img = Image.fromarray(np.uint8(new_pixels))
-    img.show()
+    # # pixels = numpy_julia(2800, 2240, 256, bounds=(-2, 2, -2, 2))
+    # with open('/storage/temp_numpy_file.npy', 'rb') as f:
+    #     # noinspection PyTypeChecker
+    #     # np.save(f, pixels)
+    #     pixels = np.load(f)
+    # new_pixels = np.where((pixels == 0)[:, :, np.newaxis],
+    #                       np.array([208, 111, 49, 255]),
+    #                       cm.magma(pixels/np.max(pixels)) * 255)
+    # img = Image.fromarray(np.uint8(new_pixels))
+    # img.show()
