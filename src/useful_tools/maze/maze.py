@@ -126,7 +126,7 @@ def alternating_range(start: int, stop: int, steps: Sequence[int] = (1,)) -> Ite
 
 
 def main():
-    raw_img = Image.open('maze.png')
+    raw_img = Image.open('../storage/maze/maze.png')
     # noinspection PyTypeChecker
     raw_img_arr = np.array(raw_img)
     raw_img_arr = raw_img_arr[:, :, :3]  # Only RGB values, not RGBA

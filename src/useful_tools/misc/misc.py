@@ -1,6 +1,6 @@
-from typing import Optional, Sequence, Generator, TypeVar
-from math import log
 from functools import cache
+from math import log
+from typing import Generator, Optional, Sequence, TypeVar
 
 T = TypeVar('T')
 

@@ -1,8 +1,5 @@
-import cProfile
-import pstats
 import random
 from collections import Counter
-from typing import Callable
 
 
 def get_value_freq(pulls: int) -> list[tuple[int, int]]:
@@ -47,9 +44,4 @@ def main():
 
 
 if __name__ == '__main__':
-    with cProfile.Profile() as pr:
-        main()
-
-    stats = pstats.Stats(pr)
-    stats.sort_stats(pstats.SortKey.TIME)
-    stats.dump_stats(filename='../profiling.prof')
+    main()

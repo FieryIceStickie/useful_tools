@@ -31,18 +31,18 @@ def display_mandelbrot(x_step: float, y_step: float, max_iter: int) -> str:
 
 
 def main():
-    # Naive
+    # # Naive
     # print(display_mandelbrot(2.8/80, 2.24/24, 100))
-
+    #
     # pixels = numpy_mandelbrot(2800, 2240)
-    # np.save('/Users/stickie/PycharmProjects/useful_tools/Storage/mandelbrot.npy', pixels)
-    # pixels = np.load('/Users/stickie/PycharmProjects/useful_tools/Storage/mandelbrot.npy')
-
-    # Matplotlib
+    # np.save('src/useful_tools/storage/mandelbrot/mandelbrot.npy', pixels)
+    # pixels = np.load('')
+    #
+    # # Matplotlib
     # plt.imshow(pixels, cmap='inferno')
     # plt.show()
-
-    # PIL
+    #
+    # # PIL
     # img = Image.fromarray(np.uint8(cm.magma(pixels/np.max(pixels)) * 255))
     # img.show()
     ...
@@ -81,7 +81,7 @@ def numpy_julia(width: int, height: int, max_iter: int = 100, bounds=(-2.1, 0.7,
 if __name__ == '__main__':
     main()
     # pixels = numpy_julia(2800, 2240, 256, bounds=(-2, 2, -2, 2))
-    with open('/Users/stickie/PycharmProjects/useful_tools/Storage/temp_numpy_file.npy', 'rb') as f:
+    with open('/storage/temp_numpy_file.npy', 'rb') as f:
         # noinspection PyTypeChecker
         # np.save(f, pixels)
         pixels = np.load(f)

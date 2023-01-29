@@ -1,5 +1,6 @@
 import pytest
-from misc.misc import sum_of_restricted_digit_sum_less_than_n
+
+from src.useful_tools.misc.misc import sum_of_restricted_digit_sum_less_than_n
 
 
 @pytest.mark.parametrize(

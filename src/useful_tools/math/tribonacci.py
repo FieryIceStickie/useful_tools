@@ -11,5 +11,3 @@ def naive_tribonacci(n: int) -> list[int]:
 if __name__ == '__main__':
     print(naive_tribonacci(10))
     # [0, 0, 1, 1, 2, 4, 7, 13, 24, 44, 81, 149]
-
-f = lambda:print
