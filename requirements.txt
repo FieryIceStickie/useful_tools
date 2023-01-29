@@ -1,0 +1,13 @@
+attrs==22.1.0
+iniconfig==1.1.1
+numpy==1.23.3
+packaging==21.3
+Pillow==9.2.0
+pluggy==1.0.0
+py==1.11.0
+pyparsing==3.0.9
+pytest==7.1.2
+snakeviz==2.1.1
+tomli==2.0.1
+tornado==6.1
+matplotlib==3.6.3
