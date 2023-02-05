@@ -2,10 +2,11 @@ import math
 from collections import Counter
 from functools import lru_cache
 from itertools import product
+from src.useful_tools.utils import round_robin
 
 
 def next_prime(n: int) -> int:
-    return 3 if n == 2 else next(p for p in range(n+2, n*2, 2) if is_prime(p))
+    return 3 if n == 2 else next(p for p in range(n + 2, n * 2, 2) if is_prime(p))
 
 
 @lru_cache(maxsize=100)
@@ -15,7 +16,15 @@ def is_prime(n: int) -> bool:
     :param n: number
     :return: bool(n is prime)
     """
-    return n > 1 and all(n % p for p in range(2, math.floor(math.sqrt(n)) + 1))
+    if n < 1:
+        return False
+    if n in (2, 3):
+        return True
+    return all(n % p for p in round_robin(
+        (2, 3),
+        range(5, int(math.sqrt(n)) + 1, 6),
+        range(7, int(math.sqrt(n)) + 1, 6)
+    ))
 
 
 def check_prime(n: int) -> int:
@@ -24,7 +33,7 @@ def check_prime(n: int) -> int:
     :param n: num
     :return: 0 if n is prime else a divisor of n (returns -1 for 1)
     """
-    for p in range(2, math.floor(math.sqrt(n)) + 1):
+    for p in range(2, int(math.sqrt(n)) + 1):
         if not n % p:
             return p
     else:
@@ -68,5 +77,4 @@ def egyptian_decomposition(p: int, q: int) -> list[int]:
 
 
 if __name__ == '__main__':
-    print(factors(60))
-    print(type(factors(60)[0]))
+    pass
