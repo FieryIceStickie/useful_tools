@@ -1,6 +1,4 @@
 from einspect import impl
-from itertools import product
-import pytest
 
 
 @impl(int)
