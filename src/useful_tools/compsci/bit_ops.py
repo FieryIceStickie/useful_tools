@@ -9,12 +9,12 @@ def __matmul__(self, other):
 
 
 def full_adder(a: int, b: int, c: int):
-    return a@b@(a@b@a@(a@b@b)@c),a@b@a@(a@b@b)@c@(a@b@a@(a@b@b))@(a@b@a@(a@b@b)@c@c)
+    return a@b@(a@b@a@(a@b@b)@c), a@b@a@(a@b@b)@c@(a@b@a@(a@b@b))@(a@b@a@(a@b@b)@c@c)
 
 
 def add(a, b):
     c, *n = 0,
-    while a|b:
+    while a | b:
         c, i = full_adder(a & 1, b & 1, c)
         n += [i]
         a >>= 1
