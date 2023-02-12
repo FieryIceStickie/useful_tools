@@ -1,6 +1,8 @@
-import pytest
-from src.useful_tools.math.polynomial import polyify
 from decimal import Decimal
+
+import pytest
+
+from src.useful_tools.math.polynomial import polyify
 
 
 @pytest.mark.parametrize('p_input,order,p_output', [
