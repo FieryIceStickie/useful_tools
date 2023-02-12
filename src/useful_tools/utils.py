@@ -1,14 +1,21 @@
-from collections import deque
-from os import PathLike
 from pathlib import Path
+from os import PathLike
+from collections import deque
+from itertools import zip_longest
+from typing import TypeVar
+from collections.abc import Iterable, Iterator
+
+
+T = TypeVar('T')
 
 
 def src_path() -> PathLike:
     return Path(__file__).parent.parent
 
 
-def round_robin(*iterables):
+def round_robin(*iterables: Iterable[T]) -> Iterator[T]:
     """Taken from python docs for collections.deque"""
+    # noinspection PyTypeChecker
     iterators = deque(map(iter, iterables))
     while iterators:
         try:
@@ -17,3 +24,7 @@ def round_robin(*iterables):
                 iterators.rotate(-1)
         except StopIteration:
             iterators.popleft()
+
+
+def zip_string(*strings: str, fillvalue: str = ' ') -> str:
+    return ''.join(map(''.join, zip_longest(*strings, fillvalue=fillvalue)))
