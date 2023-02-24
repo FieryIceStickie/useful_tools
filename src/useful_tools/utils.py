@@ -15,8 +15,7 @@ def src_path() -> PathLike:
 
 def round_robin(*iterables: Iterable[T]) -> Iterator[T]:
     """Taken from python docs for collections.deque"""
-    # noinspection PyTypeChecker
-    iterators = deque(map(iter, iterables))
+    iterators = deque(iter(i) for i in iterables)
     while iterators:
         try:
             while True:

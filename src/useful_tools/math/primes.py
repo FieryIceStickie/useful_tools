@@ -2,6 +2,10 @@ import math
 from collections import Counter
 from functools import lru_cache
 from itertools import chain, product
+from typing import Iterator
+
+from bitarray import bitarray
+
 
 from src.useful_tools.utils import round_robin
 
@@ -21,9 +25,11 @@ def is_prime(n: int) -> bool:
         return False
     if n in (2, 3):
         return True
+    # TODO: Bigger wheel
+    # TODO: probabilistic methods/better methods than trial div
     return all(n % p for p in chain((2, 3), round_robin(
-        range(5, int(math.sqrt(n)) + 1, 6),
-        range(7, int(math.sqrt(n)) + 1, 6)
+        range(5, math.isqrt(n) + 1, 6),
+        range(7, math.isqrt(n) + 1, 6)
     )))
 
 
@@ -58,6 +64,8 @@ def prime_factorization(n: int) -> Counter[int]:
         return Counter({1: 1})
     factorization = Counter()
     while p := check_prime(n):
+        # TODO: Make it a progressive alg so it avoids relooping
+        # Probably will require getting rid of check_prime
         factorization[p] += 1
         n //= p
     factorization[n] += 1
@@ -109,5 +117,32 @@ def egyptian_decomposition(p: int, q: int, /, *,
             return denoms + [q]
 
 
+def sieve_of_eratosthenes(n: int) -> Iterator[int]:
+    if n < 2:
+        return
+    elif n == 2:
+        yield 2
+        return
+    p = 4  # For n=3 case
+
+    sieve = bitarray(n + 1)
+    sieve.setall(1)
+
+    sieve[4::2] = 0
+    sieve[6::3] = 0
+    yield from (2, 3)
+
+    end = math.isqrt(n)
+    for p in round_robin(
+        range(5, end+1, 6),
+        range(7, end+1, 6)
+    ):
+        if sieve[p]:
+            yield p
+            sieve[p * p::p] = False
+    yield from (i for i, v in enumerate(sieve[p:], p) if v)
+
+
 if __name__ == '__main__':
-    pass
+    print(*sieve_of_eratosthenes(1000))
+
