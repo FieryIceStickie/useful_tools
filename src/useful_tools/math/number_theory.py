@@ -1,8 +1,8 @@
-from typing import Iterator, overload, Literal
-from bisect import bisect
-from operator import itemgetter
-from functools import lru_cache
 import math
+from bisect import bisect
+from functools import lru_cache
+from operator import itemgetter
+from typing import Iterator, Literal, overload
 
 
 @overload

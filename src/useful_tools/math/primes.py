@@ -1,4 +1,5 @@
 import math
+from bisect import bisect
 from collections import Counter
 from functools import lru_cache
 from itertools import chain, product
@@ -83,12 +84,10 @@ def factors(n: int) -> list[int]:
 
 
 def sieve_of_eratosthenes(n: int) -> Iterator[int]:
-    if n < 2:
+    if n < 9:
+        smol_primes = [2, 3, 5, 7]
+        yield from smol_primes[:bisect(smol_primes, n)]
         return
-    elif n == 2:
-        yield 2
-        return
-    p = 4  # For n=3 case
 
     sieve = bitarray(n + 1)
     sieve.setall(1)
@@ -105,7 +104,7 @@ def sieve_of_eratosthenes(n: int) -> Iterator[int]:
         if sieve[p]:
             yield p
             sieve[p * p::p] = False
-    yield from (i for i, v in enumerate(sieve[p:], p) if v)
+    yield from (i for i, v in enumerate(sieve[end + 1:], end + 1) if v)
 
 
 if __name__ == '__main__':

@@ -1,10 +1,9 @@
-from pathlib import Path
-from os import PathLike
 from collections import deque
-from itertools import zip_longest
-from typing import TypeVar
 from collections.abc import Iterable, Iterator
-
+from itertools import zip_longest
+from os import PathLike
+from pathlib import Path
+from typing import TypeVar
 
 T = TypeVar('T')
 

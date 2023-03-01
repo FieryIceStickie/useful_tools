@@ -1,6 +1,11 @@
+from itertools import takewhile
+
 import pytest
 
-from src.useful_tools.math.primes import check_prime, is_prime
+from src.useful_tools.math.primes import (check_prime, is_prime,
+                                          sieve_of_eratosthenes)
+
+PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 
 
 @pytest.mark.parametrize('prime,primality', [
@@ -55,3 +60,9 @@ def test_check_prime(prime: int, result: int):
 def test_check_prime_domain(n: int):
     with pytest.raises(ValueError):
         check_prime(n)
+
+
+@pytest.mark.parametrize('n', range(100))
+def test_small_values_sieve_of_eratosthenes(n: int):
+    assert all(i == j for i, j in
+               zip(sieve_of_eratosthenes(n), takewhile(lambda p: p <= n, PRIMES), strict=True))
