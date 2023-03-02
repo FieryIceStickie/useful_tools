@@ -1,5 +1,5 @@
-from pathlib import Path
 from os import PathLike
+from pathlib import Path
 
 
 def src_path() -> PathLike:

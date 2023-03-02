@@ -1,6 +1,5 @@
 import pytest
 
-
 from src.useful_tools.compsci.bit_ops import full_adder
 
 

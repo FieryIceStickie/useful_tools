@@ -1,5 +1,4 @@
-from typing import Sequence, MutableSequence, TypeVar
-
+from typing import MutableSequence, Sequence, TypeVar
 
 M = TypeVar('M', bound=Sequence)
 S = TypeVar('S', bound=MutableSequence)
