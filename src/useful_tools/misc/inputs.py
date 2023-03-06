@@ -1,23 +1,21 @@
 from typing import Callable
 
-from attrs import define
-
 inputs = map(str, [1, 3.1415, -12, 1729, 'hello world', 0x603b5, 1+0j, 3, 'END', 10])
 def input(_): return print(str(_), w:=next(inputs)) or w
 
 
-@define(str=False)
 class Message:
-    msg: str
+    def __init__(self, msg: str):
+        self.msg = msg
 
     def __str__(self):
         return self.msg
 
 
-@define(eq=False)
 class Verify:
-    msg: Message
-    fn: Callable[[str, Message], bool]
+    def __init__(self, msg: Message, fn: Callable[[str, Message], bool]):
+        self.msg = msg
+        self.fn = fn
 
     def __eq__(self, other: str):
         return self.fn(other, self.msg)

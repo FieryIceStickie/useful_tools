@@ -1,12 +1,12 @@
 from functools import cache
 from math import log
-from typing import Generator, Optional, Sequence, TypeVar
+from typing import Iterator, Optional, Sequence, TypeVar
 
 T = TypeVar('T')
 
 
 def recursive_permutations(iterable: Sequence[T], r: Optional[int] = None,
-                           current: tuple[int, ...] = (), c: int = 0) -> Generator[tuple[T, ...], None, None]:
+                           current: tuple[int, ...] = (), c: int = 0) -> Iterator[tuple[T, ...]]:
     if r is None:
         r = len(iterable)
     if c == r:
@@ -17,7 +17,7 @@ def recursive_permutations(iterable: Sequence[T], r: Optional[int] = None,
 
 
 def recursive_combinations(iterable: Sequence[T], r: Optional[int] = None,
-                           current: tuple[int, ...] = (), c: int = 0) -> Generator[tuple[T, ...], None, None]:
+                           current: tuple[int, ...] = (), c: int = 0) -> Iterator[tuple[T, ...]]:
     if r is None:
         r = len(iterable)
     if c == r:
@@ -27,7 +27,7 @@ def recursive_combinations(iterable: Sequence[T], r: Optional[int] = None,
             yield from recursive_combinations(iterable, r, (*current, i), c + 1)
 
 
-def iter_bits(num: int, bits=1) -> Generator[int, None, None]:
+def iter_bits(num: int, bits=1) -> Iterator[int]:
     mask_num = 2**bits-1
     while num > 0:
         yield num & mask_num
