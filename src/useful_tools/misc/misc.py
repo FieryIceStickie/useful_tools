@@ -1,8 +1,30 @@
-from functools import cache
+from functools import cache, reduce
 from math import log
-from typing import Iterator, Optional, Sequence, TypeVar
+from collections import defaultdict
+from attrs import define, field
+from typing import Iterator, Iterable, Optional, Sequence, TypeVar, Self
 
 T = TypeVar('T')
+
+
+@define
+class Trie:
+    count: int = 0
+    letters: defaultdict[T, Self] = field(factory=defaultdict)
+
+    def __attrs_post_init__(self):
+        self.letters.default_factory = Trie
+
+    def __iadd__(self, other: Iterable[T]):
+        self.count += 1
+        curr = self
+        for c in other:
+            curr = curr.letters[c]
+            curr.count += 1
+        return self
+
+    def __getitem__(self, item: Iterable[T]):
+        return reduce(lambda s, c: s.letters[c], item, self)
 
 
 def recursive_permutations(iterable: Sequence[T], r: Optional[int] = None,
@@ -68,6 +90,4 @@ def sum_of_restricted_digit_sum_less_than_n(n: int, target_digit_sum: int, *, ba
 
 
 if __name__ == '__main__':
-    print(sum_of_restricted_digit_sum_less_than_n(50, 5, base=10))
-    print(sum_of_restricted_digit_sum_less_than_n(50, 5, base=16))
-    print(sum_of_restricted_digit_sum_less_than_n(50, 5, base=13))
+    pass
