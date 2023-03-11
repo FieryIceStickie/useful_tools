@@ -1,8 +1,9 @@
+from collections import defaultdict
 from functools import cache, reduce
 from math import log
-from collections import defaultdict
+from typing import Iterable, Iterator, Optional, Self, Sequence, TypeVar
+
 from attrs import define, field
-from typing import Iterator, Iterable, Optional, Sequence, TypeVar, Self
 
 T = TypeVar('T')
 

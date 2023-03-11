@@ -1,7 +1,8 @@
-import pytest
-from src.useful_tools.math.linalg import row_echelon_form
 import numpy as np
+import pytest
 from numpy.typing import ArrayLike
+
+from src.useful_tools.math.linalg import row_echelon_form
 
 
 @pytest.mark.parametrize('input_matrix, output_matrix, matrix_shape, output_pivots', [

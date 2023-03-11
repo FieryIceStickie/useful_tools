@@ -1,5 +1,6 @@
-from attrs import define, field
 from decimal import Decimal
+
+from attrs import define, field
 
 
 @define(slots=True, frozen=True)

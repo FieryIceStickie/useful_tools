@@ -1,11 +1,12 @@
-from decimal import Decimal
-from Math.complexdecimal import ComplexDecimal
-from collections import defaultdict
-from itertools import product, chain
-import re
-from math import prod
 import copy
+import re
+from collections import defaultdict
+from decimal import Decimal
+from itertools import chain, product
+from math import prod
 from typing import Sequence
+
+from Math.complexdecimal import ComplexDecimal
 
 
 class CoefDict:
