@@ -2,7 +2,7 @@ import math
 from bisect import bisect
 from collections import Counter
 from functools import lru_cache
-from itertools import chain, product
+from itertools import chain, product, cycle
 from typing import Iterator
 
 from bitarray import bitarray
@@ -84,8 +84,8 @@ def factors(n: int) -> list[int]:
 
 
 def sieve_of_eratosthenes(n: int) -> Iterator[int]:
-    if n < 9:
-        smol_primes = [2, 3, 5, 7]
+    if n < 31:
+        smol_primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
         yield from smol_primes[:bisect(smol_primes, n)]
         return
 
@@ -94,16 +94,17 @@ def sieve_of_eratosthenes(n: int) -> Iterator[int]:
 
     sieve[4::2] = 0
     sieve[6::3] = 0
-    yield from (2, 3)
+    sieve[10::5] = 0
+    yield from (2, 3, 5)
 
     end = math.isqrt(n)
-    for p in round_robin(
-        range(5, end+1, 6),
-        range(7, end+1, 6)
-    ):
+    diffs = cycle((4, 2, 4, 2, 4, 6, 2, 6))
+    p = 7
+    while p <= end:
         if sieve[p]:
             yield p
             sieve[p * p::p] = False
+        p += next(diffs)
     yield from (i for i, v in enumerate(sieve[end + 1:], end + 1) if v)
 
 

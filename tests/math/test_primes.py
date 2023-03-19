@@ -66,3 +66,7 @@ def test_check_prime_domain(n: int):
 def test_small_values_sieve_of_eratosthenes(n: int):
     assert all(i == j for i, j in
                zip(sieve_of_eratosthenes(n), takewhile(lambda p: p <= n, PRIMES), strict=True))
+
+
+def test_large_value_sieve_of_eratosthenes():
+    assert sum(1 for _ in sieve_of_eratosthenes(1_000_000)) == 78498
