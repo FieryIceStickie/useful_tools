@@ -325,4 +325,6 @@ if __name__ == '__main__':
     # Todo: Implement Horner's rule
     # Todo: Maybe Karatsuba?
     # Todo: Restructure class to remove CoefDict
+    # Todo: Change repr to add spaces
+    # Todo: Use gmpy types
     polynomial_main()
