@@ -6,7 +6,7 @@ from itertools import chain, product
 from math import prod
 from typing import Sequence
 
-from Math.complexdecimal import ComplexDecimal
+from src.useful_tools.exceptions import InvalidPolynomialTypeError
 
 
 class CoefDict:
@@ -277,7 +277,7 @@ class Polynomial:
     def is_constant(self) -> bool:
         return self.coef_dict.is_constant()
 
-    def get_roots(self) -> tuple[ComplexDecimal, ...]:
+    def get_roots(self) -> tuple[...]:
         pass
 
 
@@ -317,10 +317,7 @@ def coef_display(num: Decimal, *, is_first: bool = False, is_constant: bool = Fa
 
 
 def polynomial_main():
-    p = polyify('x^100-1')
-    q = polyify('x^5-1')
-    print(p, q)
-    print(divmod(p, q))
+    pass
 
 
 if __name__ == '__main__':
@@ -328,4 +325,6 @@ if __name__ == '__main__':
     # Todo: Implement Horner's rule
     # Todo: Maybe Karatsuba?
     # Todo: Restructure class to remove CoefDict
+    # Todo: Change repr to add spaces
+    # Todo: Use gmpy types
     polynomial_main()

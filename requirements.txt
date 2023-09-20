@@ -12,3 +12,4 @@ tomli>=2.0.1
 tornado>=6.1
 matplotlib>=3.6.3
 einspect>=0.5.8
+bitarray>=2.7.1
