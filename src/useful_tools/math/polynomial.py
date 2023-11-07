@@ -4,7 +4,7 @@ from collections import defaultdict
 from decimal import Decimal
 from itertools import chain, product
 from math import prod
-from typing import Sequence
+from typing import Sequence, Generic
 
 from src.useful_tools.exceptions import InvalidPolynomialTypeError
 
