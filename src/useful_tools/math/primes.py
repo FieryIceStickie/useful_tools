@@ -16,7 +16,6 @@ __all__ = ['next_prime', 'is_prime', 'check_prime',
 
 def next_prime(n: int) -> int:
     """
-    Given a number, returns the next prime number
     :param n: number
     :return: next prime
     """
@@ -26,8 +25,8 @@ def next_prime(n: int) -> int:
 @lru_cache(maxsize=100)
 def is_prime(n: int) -> bool:
     """
-    Checks if a number is prime
-    :param n: number
+    Checks if n is prime
+    :param n: a number
     :return: bool(n is prime)
     """
     if n < 2:
@@ -75,7 +74,7 @@ def prime_factorization(n: int) -> Counter[int]:
         return Counter({1: 1})
     factorization = Counter()
     while p := check_prime(n):
-        # TODO: Make it a progressive alg so it avoids relooping
+        # TODO: Make it a progressive alg so it avoids re-looping
         # Probably will require getting rid of check_prime
         # TODO: Use faster methods
         factorization[p] += 1

@@ -33,7 +33,6 @@ def generalized_pentagonal_nums(n: int, *, include_index: bool = False) -> Itera
 def count_non_strict_integer_partitions(num: int) -> int:
     """
     https://en.wikipedia.org/wiki/Partition_(number_theory)
-    :param num: number
     :return: number of partitions less than num
     """
     *penta_nums, = generalized_pentagonal_nums(num + 1, include_index=True)
@@ -44,7 +43,6 @@ def count_non_strict_integer_partitions(num: int) -> int:
             return 1
         return sum(p(n - a) * (1 if k % 2 else -1) for k, a in penta_nums[1:bisect(penta_nums, n, key=itemgetter(1))])
     return p(num)
-
 
 
 def egyptian_decomposition(p: int, q: int, /, *,
