@@ -1,6 +1,7 @@
 from collections import defaultdict
 from functools import cache, reduce
 from math import log
+import re
 from typing import Iterable, Iterator, Optional, Self, Sequence, TypeVar
 
 from attrs import define, field
@@ -88,6 +89,18 @@ def sum_of_restricted_digit_sum_less_than_n(n: int, target_digit_sum: int, *, ba
             new_total += mid_total + digit*base**(length-i-1)*mid_count
         return new_total, new_count
     return solve(0, True, 0)
+
+
+def obsidian_to_quora(text: str) -> str:
+    return re.sub(
+        r'\$([^$]+)\$',
+        r'[math]\1[/math]',
+        re.sub(
+            r'\$\$([^$]+)\$\$',
+            lambda g: f'[math]{g.group(1).replace('\n', '')}[/math]',
+            text
+        )
+    )
 
 
 if __name__ == '__main__':
