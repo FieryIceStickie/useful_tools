@@ -1,7 +1,7 @@
-from einspect import impl
+from fishhook import hook
 
 
-@impl(int)
+@hook(int)
 def __matmul__(self, other):
     return int(not(self&other))
 
