@@ -104,4 +104,40 @@ def obsidian_to_quora(text: str) -> str:
 
 
 if __name__ == '__main__':
-    pass
+    print(obsidian_to_quora(r"""We want to evaluate the integral
+$$
+\begin{align*}
+\int_{0}^{2\pi} \sin^{6}x\cos^{6}x\,\mathrm{d}x
+\tag*{}\end{align*}
+$$
+via contour integration.
+We start off with the substitution $z=e^{ix}$, which converts the integral into a contour integral over the unit circle in the clockwise direction:
+$$
+\begin{align*}
+\int_{0}^{2\pi} \sin^{6}x\cos^{6}x\,\mathrm{d}x&=\oint_{|z|=1}\left( \frac{z-z^{-1}}{2i} \right)^{6}\left( \frac{z+z^{-1}}{2} \right)^{6} \frac{\mathrm{d}z}{iz}.\\
+&=\frac{i}{2^{12}}\oint_{|z|=1}(z-z^{-1})^{6}(z+z^{-1})^{6} \frac{\mathrm{d}z}{z}.
+\tag*{}\end{align*}
+$$
+Now we use the residue theorem. By multiplying through, we can see that the only pole of the integrand is the order-$13$ one at $z=0$. The residue is the coefficient of $z^{-1}$ in the Laurent series of the integrand, so we just need to find the constant coefficient of $(z-z^{-1})^{6}(z+z^{-1})^{6}$:
+$$
+\begin{align*}
+(z-z^{-1})^{6}(z+z^{-1})^{6}&=(z^{2}-z^{-2})^{6}\\
+&=\sum_{k=0}^{6} \binom{6}{k} z^{2(6-k)}(-1)^{k}z^{-2k}\\
+&=\sum_{k=0}^{6} \binom{6}{k} (-1)^{k}z^{12-4k}.
+\tag*{}\end{align*}
+$$
+Thus, the residue is $\displaystyle-\binom{6}{3}$, and so by the residue theorem we have that
+$$
+\begin{align*}
+\oint_{|z|=1}(z-z^{-1})^{6}(z+z^{-1})^{6} \frac{\mathrm{d}z}{z}&=-2\pi i \binom{6}{3}.
+\tag*{}\end{align*}
+$$
+Finally, we get that
+$$
+\begin{align*}
+\int_{0}^{2\pi} \sin^{6}x\cos^{6}x\,\mathrm{d}x&=\frac{\pi}{2^{11}} \binom{6}{3}\\
+&=\frac{5\pi}{512}.
+\tag*{}\end{align*}
+$$
+
+"""))
