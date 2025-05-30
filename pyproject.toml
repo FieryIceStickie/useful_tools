@@ -1,0 +1,45 @@
+[project]
+name = "useful-tools"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "attrs>=25.3.0",
+    "bitarray>=3.3.1",
+    "fishhook>=0.3.2",
+    "frozendict>=2.4.6",
+    "importlib-resources>=6.5.2",
+    "matplotlib>=3.10.1",
+    "numpy>=2.2.5",
+    "pandas>=2.2.3",
+    "pillow>=11.2.1",
+    "regex>=2024.11.6",
+    "rich>=14.0.0",
+    "scipy>=1.15.2",
+    "snakeviz>=2.2.2",
+    "sympy>=1.14.0",
+    "tomli>=2.2.1",
+    "tqdm>=4.67.1",
+    "typeshed-client>=2.7.0",
+    "typing-extensions>=4.13.2",
+    "useful-types>=0.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "ruff>=0.11.7",
+]
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.pyright]
+typeCheckingMode = "strict"
+reportUnusedCallResult = false
+reportUnusedVariable = false
+reportUnreachable = false
+reportUnnecessaryComparison = false
+reportAny = false

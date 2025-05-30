@@ -138,6 +138,4 @@ $$
 \int_{0}^{2\pi} \sin^{6}x\cos^{6}x\,\mathrm{d}x&=\frac{\pi}{2^{11}} \binom{6}{3}\\
 &=\frac{5\pi}{512}.
 \tag*{}\end{align*}
-$$
-
-"""))
+$$"""))
