@@ -1,0 +1,17 @@
+Let $q(x)=(x+1)p(x)-1$. Then, for $k=0, \dots, n$ we have $q(k)=(k+1)p(k)-1=0$. Since $q$ has degree $n+1$, we deduce that $q(x)=ax(x-1)\dots(x-n)$ for some constant $a$. To find out what $a$ is, we note the additional value $q(-1)=(-1+1)p(-1)-1=-1$, and we find that
+$$
+\begin{align*}
+-1&=a(-1)(-2)\dots(-n-1)\\
+-1&=a(-1)^{n+1}(n+1)!\\
+a&= \frac{(-1)^{n}}{(n+1)!}.
+\tag*{}\end{align*}
+$$
+Now we consider $q(n+1)$ and rearrange for $p(n+1)$:
+$$
+\begin{align*}
+(n+2)p(n+1)-1&= \frac{(-1)^{n}}{(n+1)!}(n+1)(n)\dots(1)\\
+(n+2)p(n+1)-1&=(-1)^{n}\\
+p(n+1)&= \frac{1+(-1)^{n}}{n+2}.
+\tag*{}\end{align*}
+$$
+Something of particular interest is that $p(n+1)$ is $0$ whenever $n$ is odd.

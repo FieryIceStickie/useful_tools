@@ -1,0 +1,30 @@
+We want to evaluate the limit $\lim_{ n \to \infty }S_{n}$, where
+$$
+\begin{align*}
+S_{n}&=\sum_{k=1}^{2010} \cos^{n}\left( \frac{k!\pi}{2010} \right).
+\tag*{}\end{align*}
+$$
+First, we note that
+$$
+\begin{align*}
+\lim_{ n \to \infty } \cos^{n}(x)&=\begin{cases}
+1 & \cos(x)=1\\
+\text{DNE} & \cos(x)=-1 \\
+0 & \text{ otherwise},
+\end{cases}
+\tag*{}\end{align*}
+$$
+so we should look at when $\cos\left( \frac{k!\pi}{2010} \right)$ is $\pm1$. This happens precisely when $\frac{k!}{2010}$ is an integer, and we have the identity
+$$
+\begin{align*}
+\cos(n \pi)=(-1)^{n}
+\tag*{}\end{align*}
+$$
+for $n \in \mathbb{Z}$.
+We have that $2010=2\cdot3\cdot5\cdot67$, so $\frac{k!}{2010}$ is an integer when $k\ge67$. There are more than two factors of $2$ in $67!$ (in fact there are $64$), so $\frac{k!}{2010}$ is even when $k\ge67$, and thus
+$$
+\begin{align*}
+\lim_{ n \to \infty } S_{n}&=\sum_{k=67}^{2010} 1\\
+&=1944.
+\tag*{}\end{align*}
+$$

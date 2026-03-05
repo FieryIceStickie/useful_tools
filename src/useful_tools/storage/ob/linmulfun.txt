@@ -1,0 +1,49 @@
+We want to find all functions $f: \mathbb{R}\to \mathbb{R}$ such that
+$$
+\begin{align*}
+f(x)f(y)+f(x+y)&=xy\quad \forall x,y \in \mathbb{R}.
+\tag*{}\end{align*}
+$$
+Setting $x=y=0$ yields
+$$
+\begin{align*}
+f(0)^{2}+f(0)&=0,
+\tag*{}\end{align*}
+$$
+so $f(0)=0,-1$. If $f(0)=0$ then setting $y=0$ yields
+$$
+\begin{align*}
+f(x)&=0\quad \forall x \in \mathbb{R},
+\tag*{}\end{align*}
+$$
+so we get the solution $f(x)=0$.
+Otherwise, we have $f(0)=-1$. Setting $y=-x$ yields
+$$
+\begin{align*}
+f(x)f(-x)-1&=x(-x)\quad \forall x \in \mathbb{R}\\
+f(x)f(-x)&=1-x^{2},
+\tag*{}\end{align*}
+$$
+so $f(1)f(-1)=0$ and thus $f(1)=0$ or $f(-1)=0$.
+If $f(1)=0$ then setting $y=1$ yields
+$$
+\begin{align*}
+f(x+1)&=x\quad \forall x \in \mathbb{R},
+\tag*{}\end{align*}
+$$
+which gives us the solution $f(x)=x-1$.
+Similarly, if $f(-1)=0$ then setting $y=-1$ yields
+$$
+\begin{align*}
+f(x-1)&=-x\quad \forall x \in \mathbb{R},
+\tag*{}\end{align*}
+$$
+which gives us the solution $f(x)=-x-1$.
+
+Hence, the only solutions to the functional equation are
+$$
+\begin{align*}
+f(x)=0 \lor f(x)=\pm x-1\quad \forall x \in \mathbb{R}.
+\tag*{}\end{align*}
+$$
+

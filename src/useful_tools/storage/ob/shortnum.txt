@@ -1,0 +1,18 @@
+We want to find the maximum possible value of $x+y$ where $x,y \in \mathbb{Z}^{+}$ and
+$$
+\begin{align*}
+x^{4}&=(x-1)(y^{3}-23)-1.
+\tag*{}\end{align*}
+$$
+Firstly, we have that $x-1 \mid x^{4}+1$. This means that
+$$
+\begin{align*}
+0 &\equiv x^{4}+1 \pmod{x-1}\\
+&\equiv 1^{4}+1 \pmod{x-1}\\
+&\equiv2,
+\tag*{}\end{align*}
+$$
+so $x=2,3$.
+If $x=2$, then $y^{3}=40$, which has no integer solutions.
+If $x=3$, then $y^{3}=64$, which has a positive integer solution of $y=4$.
+Thus, $x=3,y=4$ is the only solution and the maximum value of $x+y$ is $7$.

@@ -1,0 +1,33 @@
+We want to evaluate the integral
+$$
+\begin{align*}
+I&=\int_{0}^{\frac{\pi}{2}} \left\lfloor 2025\sin^{2}x \right\rfloor \,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+The clear generalization here is $n=2025$, so let's do that. Firstly, by symmetry we have
+$$
+\begin{align*}
+2I&=\int_{0}^{\frac{\pi}{2} } \lfloor n\sin^{2}x \rfloor +\lfloor n\cos^{2}x \rfloor \,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Now consider $a,b \in \mathbb{R}$. We have that
+$$
+\begin{align*}
+\lfloor a+b \rfloor &=\lfloor \lfloor a \rfloor +(a \bmod1) +\lfloor b \rfloor +(b \bmod1) \rfloor \\
+&=\lfloor a \rfloor+\lfloor b \rfloor+\lfloor (a \bmod1)+(b \bmod1) \rfloor,
+\tag*{}\end{align*}
+$$
+so $\lfloor a \rfloor+\lfloor b \rfloor=\lfloor a+b \rfloor-\lfloor (a \bmod1)+(b \bmod1) \rfloor$. This gives us that
+$$
+\begin{align*}
+2I&=\int_{0}^{\frac{\pi}{2} } \lfloor n(\sin^{2}x+\cos^{2}x) \rfloor-\lfloor (n\sin^{2}x \bmod1)+(n\cos^{2}x \bmod1) \rfloor \,\mathrm{d}x\\
+&=\frac{n\pi}{2}-\int_{0}^{\frac{\pi}{2} }\lfloor (n \sin^{2}x \bmod 1)+(n \cos^{2}x\bmod 1) \rfloor \,\mathrm{d}x. 
+\tag*{}\end{align*}
+$$
+Modulo $1$, we have that $n\sin^{2}x \equiv n-n\cos^{2}x \equiv 1-n\cos^{2}x$, so whenever $\delta=(n\sin^{2}x \bmod1)\in(0,1)$, we have that $(n\cos^{2}x \bmod 1)=1-\delta$, so their sum is just $1$. The set of $x$ such that $n\sin^{2}x\equiv0 \pmod 1$ is finite and thus has measure zero, so we can safely ignore it and say that the integrand is $1$. Thus,
+$$
+\begin{align*}
+2I&= \frac{n \pi}{2}-\frac{\pi}{2}\\
+I&=\frac{(n-1)\pi}{4}.
+\tag*{}\end{align*}
+$$

@@ -1,0 +1,21 @@
+We want to show that
+$$
+\begin{align*}
+7^{\sqrt{ 5 }}>5^{\sqrt{ 7 }}.
+\tag*{}\end{align*}
+$$
+Noting that $x^{a}$ is increasing on $(0,\infty)$ for $a>0$, it suffices to show that
+$$
+\begin{align*}
+7^{\frac{1}{\sqrt{ 7 }}}>5^{\frac{1}{\sqrt{ 5 }}}.
+\tag*{}\end{align*}
+$$
+Consider the function $f(x)=x^{\frac{1}{\sqrt{ x }}}$. We do logarithmic differentiation for the derivative:
+$$
+\begin{align*}
+\ln (f(x))&=\frac{\ln x}{\sqrt{ x }}\\
+\frac{f'(x)}{f(x)}&= \frac{\sqrt{ x }\cdot \frac{1}{x}-\ln(x) \cdot \frac{1}{2\sqrt{ x }}}{x}\\
+&= \frac{2-\ln x}{2x\sqrt{ x }}.
+\tag*{}\end{align*}
+$$
+Noting that $f(x)>0$ for $x \in(0,\infty)$, we note that $f'(x)>0$ for $x \in(0,e^{2})$, since $2-\ln x>0$ in that interval. Thus, $f$ is increasing on $(0,e^{2})$. Since $e^{2}\approx 7.3\dots$, the interval includes $5,7$, so $5^{\frac{1}{\sqrt{ 5 }}}<7^{\frac{1}{\sqrt{ 7 }}}$, as required.

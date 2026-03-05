@@ -1,0 +1,30 @@
+Let $f(x)$ be a polynomial satisfying the above condition for all prime $p>N$. Firstly, if $f$ is constant then $f(x)=1$, which doesn't satisfy the required condition.
+
+Let $n$ be the degree of $f$. If $n>1$, then eventually $f(p)>p$ for all $p$ past some threshold $M$ (for formal justification, $f(x)-x\to\infty$ as $x\to\infty$), so any such $p$ divides $2f(p)!$ and must then divide $1$, which can't be true for any prime. Hence, $f$ is of the form $f(x)=x+k$ for some $k\in\mathbb Z$.
+
+Clearly we run into the same issue if $k\ge0$, so we can look at $f(x)=x-k$ for $k\in\mathbb N^+$. Rewriting as a number theory problem, we want all $k\in\mathbb N^+$ such that $2(p-k)!+1\equiv0\pmod p$ for all prime $p$ past some threshold. By Wilson's theorem (assuming $p>k$ since we're considering arbitrarily large $p$),
+$$
+\begin{align*}
+(p-1)!&\equiv-1 \pmod p\\
+\left( \prod_{r=1}^{k-1}(p-r) \right)(p-k)!&\equiv-1 \pmod p\\
+(-1)^{k-1}(k-1)! (p-k)!&\equiv-1 \pmod p\\
+(p-k)!&\equiv(-1)^{k}((k-1)!)^{-1} \pmod p.
+\tag*{}\end{align*}
+$$
+As such, we must have
+$$
+\begin{align*}
+2(-1)^{k}((k-1)!)^{-1}+1&\equiv0 \pmod p\\
+2(-1)^{k}+(k-1)!&\equiv0 \pmod p.
+\tag*{}\end{align*}
+$$
+Since $2(-1)^{k}+(k-1)!$ is a constant, and this is true for all prime $p$ past some threshold, we must have that $2(-1)^{k}+(k-1)!=0$. Since for $k>3$, $(k-1)! >2$, we have $k\le3$, which leaves $k=3$ as the only solution. Working backwards, we do have that for all $p>3$,
+$$
+\begin{align*}
+2(p-3)!+1&\equiv2(2)^{-1}(p-1)!+1 \pmod p\\
+&\equiv0 \pmod p,
+\tag*{}\end{align*}
+$$
+so $f(x)=x-3$ is a solution.
+
+Hence, the only solution is $f(x)=x-3$.

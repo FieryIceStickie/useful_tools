@@ -1,0 +1,46 @@
+We want to evaluate the integral
+$$
+\begin{align*}
+I&=\int \frac{x^{2}-a}{(x^{2}+a)\sqrt{ x^{4}+a^{2} }}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Starting off, let $x=\sqrt{ a }t$. Noting that $x \sqrt{ y }=\operatorname{sgn}(x)\sqrt{ x^{2}y }$, we have
+$$
+\begin{align*}
+I&= \frac{1}{\sqrt{ a }}\int \frac{t^{2}-1}{(t^{2}+1)\sqrt{ t^{4}+1 }}\,\mathrm{d}t\\
+&=\frac{\operatorname{sgn}(t)}{\sqrt{ a }}\int \frac{1-t^{-2}}{(t+t^{-1})\sqrt{ t^{2}+t^{-2} }}\,\mathrm{d}t\\
+&=\frac{\operatorname{sgn}(t)}{\sqrt{ a }}\int \frac{1-t^{-2}}{(t+t^{-1})\sqrt{ (t+t^{-1})^{2}-2 }}\,\mathrm{d}t.
+\tag*{}\end{align*}
+$$
+Letting $z=t+t^{-1}$, we have $\mathrm{d}z=1-t^{-2}\,\mathrm{d}t$, and thus
+$$
+\begin{align*}
+I&= \frac{\operatorname{sgn}(t)}{\sqrt{ a }}\int \frac{1}{z\sqrt{ z^{2}-2 }}\,\mathrm{d}z.
+\tag*{}\end{align*}
+$$
+From here, we set $w^{2}=z^{2}-2$ with $w>0$, and since $w \,\mathrm{d}w=z \,\mathrm{d}z$ we get
+$$
+\begin{align*}
+I&= \frac{\operatorname{sgn}(t)}{\sqrt{ a }}\int \frac{z}{z^{2}\sqrt{ z^{2}-2 }}\,\mathrm{d}z\\
+&=\frac{\operatorname{sgn}(t)}{\sqrt{ a }}\int \frac{w}{(w^{2}+2)\sqrt{ w^{2} }}\,\mathrm{d}w\\
+&=\frac{\operatorname{sgn}(t)}{\sqrt{ a }}\int \frac{1}{w^{2}+2}\,\mathrm{d}w\\
+&=\frac{\operatorname{sgn}(t)}{\sqrt{ 2a }}\arctan \left( \frac{w}{\sqrt{ 2 }} \right)+C.
+\tag*{}\end{align*}
+$$
+Now we just need to backsubstitute:
+$$
+\begin{align*}
+I&= \frac{\operatorname{sgn}(t)}{\sqrt{ 2a }}\arctan \left( \frac{\sqrt{ z^{2}-2 }}{\sqrt{ 2 }} \right)+C \\
+&=\frac{\operatorname{sgn}(t)}{\sqrt{ 2a }}\arctan \left( \frac{\sqrt{t^{2}+t^{-2}}}{\sqrt{ 2 }} \right)+C \\
+&=\frac{\operatorname{sgn}(x)}{\sqrt{ 2a }}\arctan \left( \frac{\sqrt{ \frac{x^{2}}{a}+ax^{-2}}}{\sqrt{ 2 }} \right)+C\\
+&= \frac{\operatorname{sgn}(x)}{\sqrt{ 2a }}\arctan \left( \sqrt{ \frac{x^{4}+a^{2}}{2ax^{2}} } \right)+C.
+\tag*{}\end{align*}
+$$
+Thus
+$$
+\begin{align*}
+\int \frac{x^{2}-a}{(x^{2}+a)\sqrt{ x^{4}+a^{2} }}\,\mathrm{d}x&= \frac{\operatorname{sgn}(x)}{\sqrt{ 2a }}\arctan \left( \sqrt{ \frac{x^{4}+a^{2}}{2ax^{2}} } \right)+C.
+\tag*{}\end{align*}
+$$
+
+

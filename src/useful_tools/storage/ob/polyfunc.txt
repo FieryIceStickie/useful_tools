@@ -1,0 +1,202 @@
+We want to find all functions f such that
+$$
+\begin{align*}
+f(x^4)+f(x^2)+f(x)+f(1)&=x^4+x^2+x+1.
+\tag*{}\end{align*}
+$$
+This question seems to have been duplicated quite a few times by the Quora bot, and I can't find the original. In the other answers across the other questions, everyone considers $f:\mathbb{R}\to \mathbb{R}$, so I will start with that as well.
+
+A necessary condition
+---
+Firstly, suppose we have $f:\mathbb{R}\to \mathbb{R}$ satisfying the functional equation. Define $g:\mathbb R\to\mathbb R$ via $g(x)=f(x)-x$. Then
+$$
+\begin{align*}
+g(x^4)+g(x^2)+g(x)+g(1)&=0.
+\tag*{}\end{align*}
+$$
+Set $x=0,1$ to get $g(0)=g(1)=0$. Then setting $x=t,-t$ and combining yields $g(t)=g(-t)$, so $g$ is even. Hence, it suffices to determine the action of $g$ on $\mathbb R^+$. Now we define $h:\mathbb R\to\mathbb R$ with $h(x)=g(e^x)$, so that
+$$
+\begin{align*}
+h(4x)+h(2x)+h(x)&=g(e^{4x})+g(e^{2x})+g(e^{x})\\
+&=0.
+\tag*{}\end{align*}
+$$
+This is about the weakest restriction we can get. Setting $x\mapsto2x$ gives $h(8x)+h(4x)+h(2x)=0$, so $h(8x)=h(x)$. The positive and negative real axis don't really affect each other, so let's define $u_{p}:\mathbb{R}\to \mathbb{R}$ for $p=-1,1$ via $u_{p}(x)=h(p2^{x})$. Then
+$$
+\begin{align*}
+u_{p}(x+2)+u_{p}(x+1)+u_{p}(x)&=h(4p2^{x})+h(2p2^{x})+h(p2^{x})\\
+&=0.
+\tag*{}\end{align*}
+$$
+Similarly, we have that $u_{p}(x+3)=u_{p}(x)$. With these two restrictions, it suffices to determine $u_{p}$ on $[0,2)$, as for $x \in[2,3)$ we have $u_{p}(x)=-u_{p}(x-1)-u_{p}(x-2)$, and elsewhere we have periodicity. Now I claim that any choice of $u_{p}$ on $[0,2)$ works, which ends the necessary part of the proof.
+
+Showing sufficiency
+---
+Working backwards to reconstruct an $f:\mathbb{R}\to \mathbb{R}$ starting with arbitrary $u_{p}:[0,2)\to \mathbb{R}$, the following sequence of definitions suffice (I use a superscript $*$ to denote functions that are just extensions of prior functions):
+$$
+\begin{align*}
+u^{*}_{p}:[0,3)\to \mathbb{R}\quad&u^{*}_{p}(x)=\begin{cases}
+u_{p}(x)&x \in[0,2)\\
+-u_{p}(x-1)-u_{p}(x-2)&x \in[2,3),
+\end{cases}\\
+u^{**}_{p}:\mathbb{R}\to \mathbb{R}\quad& u^{**}_{p}(x)=u^{*}_{p}(x\bmod 3),\\
+h:\mathbb{R}\to \mathbb{R}\quad& h(x)=\begin{cases}
+0& x =0 \\
+u^{**}_{p}\left( \log_{2}| x |  \right)& x \in p\mathbb{R}^{+},
+\end{cases}\\
+g:\mathbb{R}\to \mathbb{R}\quad&g(x)=\begin{cases}
+0&x=0 \\
+h(\ln | x | )&\text{otherwise},
+\end{cases}\\
+f: \mathbb{R}\to \mathbb{R}\quad&f(x)=x+g(x).
+\tag*{}\end{align*}
+$$
+To prove that this works, we follow our proof backwards. 
+
+Claim $1$: For each $p$, $u^{*}_{p}(x+2)+u^{*}_{p}(x+1)+u^{*}_{p}(x)=0$ for all $x \in[0,1)$.
+Proof: Obvious from definition.
+
+Claim $2$: For each $p$, $u^{**}_{p}(x+2)+u^{**}_{p}(x+1)+u^{**}_{p}(x)=0$ for all $x \in \mathbb{R}$.
+Proof: It suffices to prove the statement for $x \in[0,3)$, as $u^{**}_{p}$ is $3$-periodic. Partition $[0,3)$ into $[0,1) \sqcup [1,2) \sqcup [2,3)$ and prove it for each case.
+
+Claim $3$: $h(4x)+h(2x)+h(x)=0$ for all $x \in \mathbb{R}$.
+Proof: It's true for $x=0$, otherwise
+$$
+\begin{align*}
+h(4py)+h(2py)+h(py)&=u^{**}_{p}(\log_{2}| x | +2)+u^{**}_{p}(\log_{2}| x | +1)+u^{**}_{p}(\log_{2}| x | )\\
+&=0.
+\tag*{}\end{align*}
+$$
+
+Claim $4$: $g(x^{4})+g(x^{2})+g(x)+g(1)=0$ for all $x \in \mathbb{R}$.
+Proof: It's true for $x=0$, otherwise we have
+$$
+\begin{align*}
+g(x^{4})+g(x^{2})+g(x)+g(1)&=h(\ln | x^{4} | )+h(\ln | x^{2} | )+h(\ln | x | )+h(0)\\
+&=h(4\ln| x | )+h(2\ln| x | )+h(\ln | x | )\\
+&=0.
+\tag*{}\end{align*}
+$$
+Claim $5$: $f(x^{4})+f(x^{2})+f(x)+f(1)=x^{4}+x^{2}+x+1$ for all $x \in \mathbb{R}$.
+Proof: Obvious from definition.
+
+That concludes the proof for $f:\mathbb{R}\to \mathbb{R}$. Normally I would end this here, but this is a rather interesting problem, so there's a few things I'd like to play around with.
+
+Some things of note
+---
+Firstly, the choice of $\log_{2}$ in the definition of $h$ was to make the domain of $u_{p}$ nice. However, the choice of $\ln$ in the definition of $g$ is rather arbitrary; what's going on there? Well, if we change the base then we get $h(s \ln | x |)$ for some $s \in \mathbb{R}$. I won't get into the math, but if we continue pushing $s$ through the definitions, it turns into an addition and we get a shifted $u_{p}$ (technically $u^{**}_{p}$ shifted and then restricted to $[0,2)$). The restrictions surrounding $u^{*}_{p}$ and $u^{**}_{p}$ are cyclic so they still hold for this shifted $u_{p}$, which explains why the base is arbitrary; a new choice of base just corresponds to a shifted $u_{p}$. 
+
+Now, let's take a look at how one possible function actually looks. I've plotted $f$ when $u_{-1}(x)=\sin (\pi x)$ and $u_{1}(x)=\cos(\pi x)$:
+![[Screenshot 2025-10-13 at 06.38.05.png]]
+Quite discontinuous, as expected. Zooming out makes the $f$ look like $y=x$, which is reasonable as $u_p$ is bounded, and all the functions up to $g$ only take values that $u^{*}_{p}$ takes. This does raise one question for me though. Clearly, we can't have continuity at $x=0$ without setting everything to $0$ since. We have a similar situation for $x=\pm1$. Aside from those three points, how nice can we make the function? In particular, how smooth can it be?
+
+Geometrically, $u_{-1}$ determines how the function looks on $(-1,1)$, and $u_{1}$ determines how it looks on $(-\infty,1)\cup(1,\infty)$. Since $h$ and $g$ are really just scaled copies of $u^{**}_{p}$, with any potential points of discontinuity being one of the three points mentioned above, we only really need to make $u^{**}_{p}$ smooth. One way of doing so is to start with a function on $[0,1)$, extend it to $[1,2)$ by negating it. Then the $u^{*}_{p}$ is $0$ on $[2,3)$, so we just need all derivatives to be $0$ at $x=0,1$. I won't get into the details here (see below for the desmos graph), but the gist is that we can take a smooth interpolation of $\exp(-x^{-2})$ and $\exp(-(1-x)^{-2})$ to achieve this. Credit to [EpsilonDelta](https://youtu.be/vD5g8aVscUI?si=ijdTig0RUDDhq2ah) for the smooth interpolation function I used, and the resulting $f$ is graphed below (where I've set both $u_{-1}$ and $u_{1}$ to this smooth function, and scaled it up by $10$ so it looks better):
+![[Screenshot 2025-10-13 at 07.36.47.png]]
+Here is the desmos link for anyone interested: https://www.desmos.com/calculator/euwmzeyteu. 
+
+Complex solutions
+---
+Now, since the question doesn't actually state the domain and codomain, one could try and look at solutions for $f:\mathbb{C}\to \mathbb{C}$. This does seem fairly interesting, so let's have a look. 
+
+We can define $g:\mathbb{C}\to \mathbb{C}$ as before, so $g(z)=f(z)-z$. Again, we get $g(0)=g(1)=0$, but this time we can go a lot further than just even. Setting $z\mapsto z^{2}$ gives us $g(z^{8})=g(z)$ for all $z \in \mathbb{C}$.
+
+Lemma: For all $p,q \in \mathbb{Z},q\neq0$, we have $g\left( e^{\frac{2\pi ip}{q}}z \right)=g(z)$.
+Proof: We have that
+$$
+\begin{align*}
+g\left( e^{\frac{2\pi ip}{q}}z \right)&=g(e^{16\pi ip}z^{8q})\\
+&=g(z^{8q})\\
+&=g(z).
+\tag*{}\end{align*}
+$$
+
+Before, we only considered $\mathbb{R}^{+}$ when going from $g$ to $h$, since $g(x)=g(-x)$. Now, we should consider $g(te^{x})$ for $t \in \mathbb{T}$ and $x \in \mathbb{R}$, where $\mathbb{T}=\{ z \in \mathbb{C}:| z |=1 \}$ is the circle group. We want to partition the $t \mathbb{R}^{+}$ rays making up $\mathbb{C}^{\times}$ so numbers related by the restriction are together, so we take the quotient group $\mathbb{T}\operatorname{/}\mathbb{T}_{\infty}$ and quotient (set quotient, not group quotient) under the equivalence relation
+$$
+\begin{align*}
+t_{1}\mathbb{T}_{\infty}\sim t_{2}\mathbb{T}_{\infty}\iff \exists n \in \mathbb{Z},(t_{1}\mathbb{T}_{\infty})^{2^{n}}=t_{2}\mathbb{T_{\infty}}.
+\tag*{}\end{align*}
+$$
+Since $\mathbb{T}_{\infty}^{2^{n}}=\mathbb{T}_{\infty}$, an equivalent condition is $\exists n \in \mathbb{Z},\exists \omega \in \mathbb{T}_{\infty},t_{1}^{2^{n}}\omega=t_{2}$. A representative for each equivalence class is a coset of $\mathbb{T}\operatorname{/}\mathbb{T}_{\infty}$, and a representative of each coset is a an element of $\mathbb{T}$, so construct a set $\mathcal{T}$ of these representatives in $\mathbb{T}$ (It may be possible to avoid the axiom of choice here, not sure).
+
+Then every $t \in \mathbb{T}$ has representation $t=q^{2^{n}}\omega$ for some $q \in \mathcal{T}, n \in \mathbb{N},\omega \in \mathbb{T}_{\infty}$. This representation is unique when $t\notin \mathbb{T}_{\infty}$, since if $q_{1}^{2^{n_{1}}}\omega_{1}=q_{2}^{2^{n_{2}}}\omega_{2}$ then:
+1. We have $q_{1}=q_{2}^{2^{n_{2}-n_{1}}}\omega_{2}^{2^{-n_{1}}}\omega_{1}^{-2^{-n_{1}}}\omega$ for some $\omega \in \mathbb{T}_{\infty}$ (from taking the $2^{n_{1}}$-th root), so $q_{1}\mathbb{T}_{\infty}\sim q_{2}\mathbb{T}_{\infty}$ and thus $q_{1}=q_{2}$.
+2. We have $q_{1}^{2^{n_{1}}-2^{n_{2}}}=\omega_{2}\omega_{1}^{-1} \in \mathbb{T}_{\infty}$, and since $q_{1}\notin \mathbb{T}_{\infty}$ we must have $q_{1}^{2^{n_{1}}-2^{n_{2}}}=\omega_{2}\omega_{1}^{-1}=1$. Noting that $\mathbb{T}\operatorname{/}\mathbb{T}_{\infty}$ is torsion-free, we thus have $n_{1}=n_{2}$ and $\omega_{1}=\omega_{2}$.
+
+Now, with the above lemma, if $t \in \mathbb{T}_{\infty}$ then $g(te^{x})=g(e^{x})$ for all $x \in \mathbb{R}$. Otherwise, we write $t=q^{2^{n}}\omega$ and have $g(te^{x})=g(q^{2^{n}}e^{x})$. If we determine the action of $g$ on $q\mathbb{R}^{+}$ and $q^{2}\mathbb{R}^{+}$, then this determines the action of $g$ on $[q \mathbb{T}_{\infty}]$. So, from $g$ we define $h_{1}:\mathbb{R}^{+}\to \mathbb{C}$ and the family $h_{q}:q \mathbb{R}^{+}\sqcup q^{2}\mathbb{R}^{+}\to \mathbb{C}$ for each $q \in \mathcal{T}$, each just restrictions of $g$.
+
+For $h_{1}$, we fall back into the real case (after composing an exponential), so we have the same restrictions as before. As for $h_{q}$, there doesn't seem to be any further constraints, so now we do a construction to see if this works.
+
+To construct $f$, we require a set of representatives $\mathcal{T} \subseteq \mathbb{T}$ as described above, such that either $t \in \mathbb{T}_{\infty}$ or has unique representation $t=q^{2^{n}}\omega$ for $q \in \mathcal{T},n \in \mathbb{Z},\omega \in \mathbb{T}_{\infty}$. We also require functions $u_{p}:[0,2)\to \mathbb{C}$ and a family of functions $h_{q}:q \mathbb{R}^{+}\sqcup q^{2}\mathbb{R}^{+}\to \mathbb{C}$ for each $q \in \mathcal{T}$. Then we can first define (note that the definition of $h$ here slightly differs from the real case)
+$$
+\begin{align*}
+u^{*}_{p}:[0,3)\to \mathbb{C}\quad&u^{*}_{p}(x)=\begin{cases}
+u_{p}(x)&x \in[0,2)\\
+-u_{p}(x-1)-u_{p}(x-2)&x \in[2,3),
+\end{cases}\\
+u^{**}_{p}:\mathbb{R}\to \mathbb{C}\quad& u^{**}_{p}(x)=u^{*}_{p}(x\bmod 3),\\
+h_{1}:\mathbb{R^{+}}\to \mathbb{C}\quad& h_{1}(x)=\begin{cases}
+0& x =1 \\
+u^{**}_{p}\left( \log_{2}| \ln x  |  \right)& x \in p \mathbb{R}^{+},
+\end{cases}\\
+h_{1}^{*}:\mathbb{T}_{\infty}\mathbb{R}^{+}\to \mathbb{C}\quad& h_{1}^{*}(z)=h_{1}( | z | ).
+\tag*{}\end{align*}
+$$
+Then for each $q \in \mathcal{T}$, we extend $h_{q}$ onto $q^{2^{\mathbb{Z}}} \mathbb{T}_{\infty}\mathbb{R}^{+}$ ($2^{\mathbb{Z}}$ is not the powerset) as follows. I'll leave the remaining details of unique decompositions as an exercise for the reader, since the bulk of it was done above:
+$$
+\begin{align*}
+h^{*}_{q}:\{ q,q^{2},q^{4} \}\mathbb{R}^{+}\to \mathbb{C}\quad&h^{*}_{q}(z)=\begin{cases}
+h_{q}(z) & z \in \{ q,q^{2} \}\mathbb{R}^{+} \\
+-h_{q}(q r)-h_{q}(q^{2}r^{2}) & z=q^{4}r^{4},r \in \mathbb{R}^{+},
+\end{cases}\\
+h^{**}_{q}:q^{2^{\mathbb{Z}}}\mathbb{R}^{+}\to \mathbb{C}\quad& h^{**}_{q}(z)=h^{*}_{q}\left(q^{2^{n \bmod3}}r^{-8^{\lfloor n / 3 \rfloor }}\right)\quad z=q^{2^{n}}r,n \in \mathbb{Z},r\in \mathbb{R}^{+},\\
+h^{***}_{q}(z):q^{2^{\mathbb{Z}}}\mathbb{T}_{\infty}\mathbb{R}^{+}\to \mathbb{C}\quad&h^{***}_{q}(z)=h^{**}_{q}\left( q^{2^{n}}r \right) \quad z=q^{2^{n}}\omega r,n \in \mathbb{Z},\omega \in \mathbb{T}_{\infty},r \in \mathbb{R}^{+}.
+\tag*{}\end{align*}
+$$
+Finally, we stitch them all together:
+$$
+\begin{align*}
+g: \mathbb{C}\to \mathbb{C}\quad& g(z)=\begin{cases}
+0 & z=0 \\
+h^{*}_{1}(z) & z \in \mathbb{T}_{\infty}\mathbb{R}^{+} \\
+h^{***}_{q}(z) & z \in q^{2^{\mathbb{Z}}} \mathbb{T}_{\infty}\mathbb{R}^{+},q\notin \mathbb{T}_{\infty},
+\end{cases}\\
+f:\mathbb{C}\to \mathbb{C}\quad&f(z)=z+g(z).
+\tag*{}\end{align*}
+$$
+
+To confirm this works, we confirm the equations hold for each case in $g$, since by definition of $\mathcal{T}$ $g(z^{4})+g(z^{2})+g(z)$ only involves members of one equivalence class at a time. This is obvious for $z=0$. For $z \in \mathbb{T}_{\infty}\mathbb{R}^{+}$, the reasoning is the exact same as done for $\mathbb{R}$. Otherwise, we have $z=q^{2^{n}}\omega r$ for some $q \in \mathcal{T}\setminus \mathbb{T}_{\infty},n \in \mathbb{Z},\omega \in \mathbb{T}_{\infty},r \in \mathbb{R}^{+}$, and get
+$$
+\begin{align*}
+g(z^{4})+g(z^{2})+g(z)&=h^{***}_{q}(z^{4})+h^{***}_{q}(z^{2})+h^{***}_{q}(z)\\
+&=h^{**}_{q}(q^{2^{n+2}}r^{4})+h^{**}_{q}(q^{2^{n+1}}r^{2})+h^{**}_{q}(q^{2^{n}}r).
+\tag*{}\end{align*}
+$$
+I do want to be more careful here, since there's quite a lot going on, so I'll explicitly write out the cases.
+If $n \equiv0 \pmod3$ then letting $r_{0}=r^{-8^{\lfloor n / 3 \rfloor}}$ we get
+$$
+\begin{align*}
+g(z^{4})+g(z^{2})+g(z)&=
+h^{*}_{q}\left( q^{4}r_{0}^{4} \right)
++h^{*}_{q}\left( q^{2}r_{0}^{2} \right)
++h^{*}_{q}\left( qr_{0} \right)\\
+&=-h_{q}(qr_{0})-h_{q}(q^{2}r_{0}^{2})+h_{q}(q^{2}r_{0}^{2})+h_{q}(qr_{0})\\
+&=0.
+\tag*{}\end{align*}
+$$
+If $n\equiv1 \pmod3$ then
+$$
+\begin{align*}
+g(z^{4})+g(z^{2})+g(z)&=h^{*}_{q}(q\sqrt{ r_{0} })+h^{*}_{q}(q^{4}r_{0}^{2})+h^{*}_{q}(q^{2}r_{0})\\
+&=h_{q}(q\sqrt{ r_{0} })-h_{q}(q\sqrt{ r_{0} })-h_{q}(q^{2}r_{0})+h_{q}(q^{2}r_{0})\\
+&=0.
+\tag*{}\end{align*}
+$$
+If $n\equiv2 \pmod3$ then
+$$
+\begin{align*}
+g(z^{4})+g(z^{2})+g(z)&=h^{*}_{q}(q^{2}\sqrt{ r_{0} })+h^{*}_{q}(q \sqrt[4]{ r_{0} })+h^{*}_{q}(q^{4}r_{0})\\
+&=h^{*}_{q}(q^{2}\sqrt{ r_{0} })+h^{*}_{q}(q \sqrt[4]{ r_{0} })-h^{*}_{q}(q \sqrt[4]{ r_{0} })+h^{*}_{q}(q^{2}\sqrt{ r_{0} }) \\
+&=0.
+\tag*{}\end{align*}
+$$
+That concludes the analysis for $f:\mathbb{C}\to \mathbb{C}$. Unfortunately, the torsion subgroup $\mathbb{T}_{\infty}$ is dense in the unit circle, so to get something we can visualize we'll need to set every ray to the same thing to get a modicum of continuity, and doing that effectively just copies the $\mathbb{R}^{+}$ ray around the unit circle (followed by a shift by the $y=x$ plane, assuming we're embedding the graph into $x,y,z$ space with $z=|f(x+iy)|$ and using colors for $\arg f(x+iy)$.) 

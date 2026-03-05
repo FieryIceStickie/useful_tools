@@ -1,0 +1,62 @@
+We have that
+$$
+\begin{align*}
+\sum_{k=1}^{n} \log k=\Theta(n \log n).
+\tag*{}\end{align*}
+$$
+The upper bound follows from
+$$
+\begin{align*}
+\sum_{k=1}^{n} \log k\le \sum_{k=1}^{n} \log n&=n \log n
+\tag*{}\end{align*}
+$$
+and the lower bound follows from ($\sim$ denotes asymptotic equivalence, i.e. the limit of the ratio is $1$)
+$$
+\begin{align*}
+\sum_{k=1}^{n} \log k&\ge \sum_{k=\left\lceil  \frac{n}{2}  \right\rceil }^{n} \log \left\lceil  \frac{n}{2}  \right\rceil \\
+&\ge \left( n-\left\lceil  \frac{n}{2}  \right\rceil+1  \right) \log \left\lceil  \frac{n}{2}  \right\rceil \\
+&\ge \frac{n}{2}\log \frac{n}{2}\\
+&\sim \frac{1}{2}n \log n.
+\tag*{}\end{align*}
+$$
+Suppose we had a polynomial $p(x)$ that was equal to the sum on integer values. Let $d$ be the degree of $p$ and $p_{d}$ be the leading coefficient of $p$. Informally, $p(x)=\Theta(x^{d})\neq\Theta(x \log x)$, so $p$ cannot exist.
+
+Formally, we have $M_{0},M_{1},x_{0} \in \mathbb{R}$ such that for all $x \in \mathbb{R},x>x_{0}$,
+$$
+\begin{align*}
+M_{0}x^{d}\le p(x) \le Mx^{d}.
+\tag*{}\end{align*}
+$$
+This is a common lemma, usually seen in the context of complex analysis. I won't go into the details here, since the proof is rather long. 
+
+WLOG we can take $x_{0}$ big enough such that $p(x)>0$ for all $x>x_{0}$, since $p(x)\to \infty$ as $x\to \infty$ (as $p(n)$ is positive for $n \in \mathbb{N},n>1$), so the statement becomes $M_{0}x^{d}\le p(x)\le M_{1}x^{d}$. Moreover, in the actual lemma we can take $M_{0},M_{1}$ arbitrarily close to $p_{d}$, and $p_{d}$ must be positive for the same reason as above, so we can assume $M_{0}>0$.
+
+Unwrapping the statement earlier, there exists $N \in \mathbb{N}$ such that for all $n \in \mathbb{N},n>N$,
+$$
+\begin{align*}
+\frac{1}{2}n \log n\le \sum_{k=1}^{n} \log k\le n \log n.
+\tag*{}\end{align*}
+$$
+Then for all $n \in \mathbb{N},n>\max(N,x_{0},0)$ we have
+$$
+\begin{align*}
+\frac{1}{2}n \log n \le p(x) &\le n \log n
+\tag*{}\end{align*}
+$$
+Suppose $d\le1$. Then
+$$
+\begin{align*}
+\frac{1}{2} n \log n &\le M_{1}n^{d} \le M_{1}n\\
+\frac{1}{2}\log n &\le M_{1},
+\tag*{}\end{align*}
+$$
+and we can find a contradiction for large enough $n$ since $\log n\to \infty$ as $n\to \infty$.
+Now suppose $d>1$. Then
+$$
+\begin{align*}
+n \log n\ge M_{0}n^{d}\ge M_{0}n^{2}\\
+\frac{\log n}{n} \ge M_{0},
+\tag*{}\end{align*}
+$$
+and we can find a contradiction for large enough $n$ since $\frac{\log n}{n}\to0$ as $n\to \infty$.
+Thus $p$ can't exist.

@@ -1,0 +1,74 @@
+We want to evaluate the integral
+$$
+\begin{align*}
+I&=\int_{0}^{1} \frac{\ln(1+x^{2})\arctan(x)}{x^{2}}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Noting that
+$$
+\begin{align*}
+\ln(1+x^{2})&=\ln(1+ix)+\ln(1-ix),\\
+\arctan(x)&=\frac{1}{2i}\left( \ln(1+ix)-\ln(1-ix) \right), 
+\tag*{}\end{align*}
+$$
+we get that
+$$
+\begin{align*}
+I&=\frac{1}{2i}\int_{0}^{1} \frac{\ln^{2}(1+ix)-\ln^{2}(1-ix)}{x^{2}}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Letting $f(x)= \frac{\ln(1+ix)^{2}}{x^{2}}$, we note that for $x \in(0,1)$ the integrand is a difference of conjugates, so we can write
+$$
+\begin{align*}
+I&=\frac{1}{2i}\int_{0}^{1} f(x)-\overline{ f(x) }\,\mathrm{d}x\\
+&=\frac{1}{2i}\int_{0}^{1} 2i\imag(f(x))\,\mathrm{d}x\\
+&=\imag \left( \int_{0}^{1} f(x)\,\mathrm{d}x \right).
+\tag*{}\end{align*}
+$$
+We perform integration by parts on the resulting integral:
+$$
+\begin{align*}
+J&=\int_{0}^{1} \frac{\ln^{2}(1+ix)}{x^{2}}\,\mathrm{d}x\\
+&= -\frac{\ln^{2}(1+ix)}{x}\Bigg|_{0}^{1}+2i \int_{0}^{1} \frac{\ln(1+ix)}{x(1+ix)}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+For the limit at $0$, we note the equivalent infinitesimal $\ln(1+ix)\sim ix$ as $x\to0$, so the term goes to $0$. We have the partial fraction decomposition
+$$
+\begin{align*}
+\frac{1}{x(1+ix)}&=\frac{1}{x}-\frac{i}{1+ix},
+\tag*{}\end{align*}
+$$
+so
+$$
+\begin{align*}
+\int_{0}^{1} \frac{\ln(1+ix)}{x(1+ix)}\,\mathrm{d}x&=\int_{0}^{1} \frac{\ln(1+ix)}{x}\,\mathrm{d}x-i\int_{0}^{1} \frac{\ln(1+ix)}{1+ix}\,\mathrm{d}x\\
+&=-\operatorname{Li}_{2}(-i)-\left[ \frac{1}{2}\ln^{2}(1+ix) \right]_{0}^{1}\\
+&=-\operatorname{Li}_{2}(-i)-\frac{1}{2}\ln^{2}(1+i),
+\tag*{}\end{align*}
+$$
+where $\operatorname{Li}_{2}$ is the dilogarithm. The special value $\operatorname{Li}_{2}(-i)$ is well known, and readily derived from the series form of the dilogarithm:
+$$
+\begin{align*}
+\operatorname{Li}_{2}(z)&=\sum_{k=1}^{\infty} \frac{z^{k}}{k^{2}}\\
+\operatorname{Li}_{2}(-i)&=\sum_{k=1}^{\infty} \frac{(-i)^{k}}{k^{2}}\\
+&=\sum_{k=1}^{\infty} \frac{(-1)^{k}}{(2k)^{2}}-i\sum_{k=0}^{\infty} \frac{(-1)^{k}}{(2k+1)^{2}}\\
+&=-\frac{\pi^{2}}{48}-iG,
+\tag*{}\end{align*}
+$$
+where $G$ is Catalan's constant.
+Putting everything together, we get that
+$$
+\begin{align*}
+J&=-\ln^{2}(1+i)+2i\left( \frac{\pi^{2}}{48}+iG-\frac{1}{2}\ln^{2}(1+i) \right)\\
+&=-(1+i)\ln^{2}(1+i)-2G+\frac{i\pi^{2}}{24}\\
+&=-(1+i)\left( \frac{1}{2}\ln2+\frac{i\pi}{4} \right)^{2}-2G+\frac{i\pi^{2}}{24}\\
+&=\left( -\frac{1}{4}\ln^{2}2+\frac{\pi}{4}\ln2+\frac{\pi^{2}}{16}-2G \right)\\
+&+i\left( -\frac{1}{4}\ln^{2}2-\frac{\pi}{4}\ln2+\frac{5\pi^{2}}{48} \right). 
+\tag*{}\end{align*}
+$$
+Hence
+$$
+\begin{align*}
+\int_{0}^{1} \frac{\ln(1+x^{2})\arctan(x)}{x^{2}}\,\mathrm{d}x&= -\frac{1}{4}\ln^{2}2-\frac{\pi}{4}\ln2+\frac{5\pi^{2}}{48}.
+\tag*{}\end{align*}
+$$

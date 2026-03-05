@@ -8,11 +8,15 @@ dependencies = [
     "bitarray>=3.3.1",
     "fishhook>=0.3.2",
     "frozendict>=2.4.6",
+    "gmpy2>=2.3.0",
     "importlib-resources>=6.5.2",
     "matplotlib>=3.10.1",
     "numpy>=2.2.5",
+    "openpyxl>=3.1.5",
     "pandas>=2.2.3",
+    "pandas-stubs>=2.2.3.250527",
     "pillow>=11.2.1",
+    "psycopg>=3.2.9",
     "regex>=2024.11.6",
     "rich>=14.0.0",
     "scipy>=1.15.2",
@@ -20,6 +24,7 @@ dependencies = [
     "sympy>=1.14.0",
     "tomli>=2.2.1",
     "tqdm>=4.67.1",
+    "typer>=0.16.0",
     "typeshed-client>=2.7.0",
     "typing-extensions>=4.13.2",
     "useful-types>=0.2.1",
@@ -33,6 +38,13 @@ dev = [
 [tool.ruff]
 line-length = 120
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/useful_tools"]
+
 [tool.ruff.format]
 quote-style = "single"
 
@@ -43,3 +55,6 @@ reportUnusedVariable = false
 reportUnreachable = false
 reportUnnecessaryComparison = false
 reportAny = false
+
+[project.scripts]
+cli = "useful_tools.cli:app"

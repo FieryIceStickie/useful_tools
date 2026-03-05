@@ -1,0 +1,55 @@
+We want to evaluate the family of integrals
+$$
+\begin{align*}
+I(a,b)&=\int_{-\infty}^{\infty} \frac{\sin(x)\sin(x-a)\sin(x-b)}{(x-a)(x-b)}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Firstly, we rescale to rewrite in terms of a Fourier transform:
+$$
+\begin{align*}
+I(\pi a,\pi b)&=\pi \int_{-\infty}^{\infty} \frac{\sin(\pi(x-a))\sin(\pi(x-b))}{\pi(x-a)\pi(x-b)}\sin(\pi x)\,\mathrm{d}x\\
+&=-\pi\Im\left( \int_{-\infty}^{\infty} \operatorname{sinc}(x-a)\operatorname{sinc}(x-b)e^{-2\pi i\left( \frac{1}{2} \right)x}\,\mathrm{d}x \right)\\
+&=-\pi\Im\left( \mathcal{F}\{ \operatorname{sinc}(x-a)\operatorname{sinc}(x-b) \} \left( \frac{1}{2} \right)\right).
+\tag*{}\end{align*}
+$$
+By the convolution theorem and standard Fourier properties, we have
+$$
+\begin{align*}
+\mathcal{F}\{ \operatorname{sinc}(x-a)\operatorname{sinc}(x-b) \}(s)&=\mathcal{F}\{ \operatorname{sinc}(x-a) \}(s)* \mathcal{F}\{ \operatorname{sinc}(x-b) \}(s)\\
+&=e^{-2\pi ias}\operatorname{rect}(s)* e^{-2\pi ibs}\operatorname{rect}(s).
+\tag*{}\end{align*}
+$$
+Thus we get that
+$$
+\begin{align*}
+\mathcal{F}\{ \dots \}\left( \frac{1}{2} \right)&=\int_{-\infty}^{\infty} e^{-2\pi i\left( as+b\left( \frac{1}{2}-s \right) \right)}\operatorname{rect}(s)\operatorname{rect}\left( \frac{1}{2}-s \right)\,\mathrm{d}s\\
+&=e^{-\pi ib}\int_{0}^{\frac{1}{2} } e^{-2\pi i\left( a-b \right)s}\,\mathrm{d}s\\
+&=\frac{e^{-\pi ib}(1-e^{-\pi i(a-b)})}{2\pi i(a-b)}\\
+&= i\frac{e^{-\pi ia}-e^{-\pi ib}}{2\pi(a-b)}.
+\tag*{}\end{align*}
+$$
+Hence we get that
+$$
+\begin{align*}
+I(\pi a,\pi b)&=-\pi\Im\left( i\frac{e^{-\pi ia}-e^{-\pi ib}}{2\pi (a-b)} \right)\\
+&=-\frac{\Re\left( e^{-\pi ia}-e^{-\pi ib} \right) }{2(a-b)}\\
+&= -\frac{\cos(\pi a)-\cos(\pi b)}{2(a-b)}\\
+I(a,b)&= -\frac{\pi}{2}\cdot\frac{\cos(a)-\cos(b)}{a-b}.
+\tag*{}\end{align*}
+$$
+We note that if $a=b$, then this expression is undefined. The original integrand is $O\left( \frac{1}{x^{2}} \right)$ as $| x | \to \infty$, so it is dominated by some integrable function and so we can use dominated convergence to let us take a limit, which turns the difference quotient into a derivative, so
+$$
+\begin{align*}
+I(a,a)&=\frac{\pi}{2}\sin(a).
+\tag*{}\end{align*}
+$$
+Thus we have that
+$$
+\begin{align*}
+I(a,b)&=\begin{cases}
+\frac{\pi}{2}\sin(a) & a=b \\
+-\frac{\pi}{2}\cdot \frac{\cos(a)-\cos(b)}{a-b} & \text{otherwise.}
+\end{cases}
+\tag*{}\end{align*}
+$$
+

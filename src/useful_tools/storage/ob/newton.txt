@@ -1,0 +1,35 @@
+Let $x=\frac{m}{n}$. Then we want to show that for $x$ is close to $\sqrt{ 2 }$, $\frac{1}{2}x+\frac{1}{x}$ is closer.
+
+If we perform Newton-Rhapson on $f(x)=x^2-2$ to approximate $\sqrt2$, then we get the recurrence
+$$
+\begin{align*}
+x_{n+1}&=x_{n}- \frac{f(x_{n})}{f'(x_{n})}\\
+&= x_{n}- \frac{x_{n}^{2}-2}{2x_{n}}\\
+&= \frac{1}{2}x_{n}+\frac{1}{x_{n}},
+\tag*{}\end{align*}
+$$
+which explains where the expression comes from.
+
+To prove that it does get closer, we can look at the convergence rate of the method. One can derive with Taylor's theorem the following recurrence for the error $\varepsilon_{n}=\alpha-x_{n}$, provided $f''$ is continuous:
+$$
+\begin{align*}
+| \varepsilon_{n+1} |&= \frac{| f''(\xi_{n}) | }{2|f'(x_{n})|}| \varepsilon_{n} |^{2}, 
+\tag*{}\end{align*}
+$$
+where $\xi_{n}$ is some number between $\alpha$ and $x_{n}$. In our case, this simplifies to
+$$
+\begin{align*}
+| \varepsilon_{n+1} | &= \frac{1}{2| x_{n} | }| \varepsilon_{n} |^{2}\\
+\frac{| \varepsilon_{n+1} | }{| \varepsilon_{n} | }&= \frac{| x_{n}-\sqrt{ 2 } | }{2| x_{n} | }\\
+&= \frac{1}{2}\left| 1- \frac{\sqrt{ 2 }}{x_{n}} \right|.
+\tag*{}\end{align*}
+$$
+For $x_{n}$ close to $\sqrt{ 2 }$, this term will be close to $0$, so $| \varepsilon_{n+1} |$ will be much smaller than $| \varepsilon_{n} |$, and in fact we have quadratic convergence. To get precise intervals for where this is true, we solve for $| \varepsilon_{n+1} |<| \varepsilon_{n} |$:
+$$
+\begin{align*}
+\frac{| \varepsilon_{n+1} | }{| \varepsilon_{n} | }&<1\\
+\frac{1}{2}\left| 1- \frac{\sqrt{ 2 }}{x_{n}} \right| &<1\\
+-1< \frac{\sqrt{ 2 }}{x_{n}}&<3,
+\tag*{}\end{align*}
+$$
+which is true when $x_{n}\in\left( -\infty,-\sqrt{ 2 } \right)\cup\left( \frac{\sqrt{ 2 }}{3},\infty \right)$. This certainly includes an interval around $\sqrt{ 2 }$, so for $x$ within $\frac{2\sqrt{ 2 }}{3}$ units of $\sqrt{ 2 }$, $\frac{1}{2}x+\frac{1}{x}$ will be closer to $\sqrt{ 2 }$.

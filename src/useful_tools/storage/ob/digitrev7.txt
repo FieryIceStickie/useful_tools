@@ -1,0 +1,3 @@
+Let $N=(abcd)_{10}$. We want $N'=(dcba)_{10}$ to satisfy $N'=7N$.
+
+Since $\frac{10000}{7}=1428.5\dots$, for $N'$ to be a $4$-digit number we need $a=1$. Looking at the last digit, we need $7d \equiv 1 \pmod{10}$, so $d=3$. However, $N\ge1000$ and so $7N\ge7000$, so $d\ge7$. This is a contradiction, so we conclude there are no such $4$-digit numbers.

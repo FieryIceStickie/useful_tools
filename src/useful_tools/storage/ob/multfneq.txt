@@ -1,0 +1,85 @@
+We want to find all functions $f:\mathbb{R}^{+}\to \mathbb{R}^{+}$ such that
+$$
+\begin{align*}
+f(xf(y))&=yf(x)\quad \forall x,y\in \mathbb{R}^{+}.
+\tag*{}\end{align*}
+$$
+Since the domain is $\mathbb{R}^{+}$, we can do a substitution like $g(x)=\ln(f(e^{x}))$, where $g:\mathbb{R}\to \mathbb{R}$. Rearranging this into $f(x)=\exp(g(\ln x))$ and substituting into the functional equation yields
+$$
+\begin{align*}
+e^{g(\ln x+\ln f(y))}&=ye^{g(\ln x)}\\
+g(\ln x+g(\ln y))&=\ln y+g(\ln x).
+\tag*{}\end{align*}
+$$
+After a quick change of variables to remove the logs, we get the new functional equation
+$$
+\begin{align*}
+g(x+g(y))&=g(x)+y\quad \forall x,y \in \mathbb{R}.
+\tag*{}\end{align*}
+$$
+I'll leave it as an exercise for the reader to confirm that this "change of basis" is invertible, in the sense that any solution for $g$ corresponds to a solution for $f$, and vice versa.
+
+Now, when $x=y=0$ we get that $g(g(0))=g(0)$, so $a=g(0)$ is a fixed point of $g$. Now, setting $y=0$ yields $g(x+a)=g(x)$. If we then set $y=a$ and simplify, we get
+$$
+\begin{align*}
+g(x+g(a))&=g(x)+a\\
+g(x+g(0))&=g(x)+a\\
+g(x+a)&=g(x)+a\\
+a&=0.
+\tag*{}\end{align*}
+$$
+And thus $g(0)=0$.
+
+Now setting $x=0$ gives $g(g(y))=y$ for all $y \in \mathbb{R}$. We substitute this in by setting $y=g(z)$ for $z \in \mathbb{R}$ and get that
+$$
+\begin{align*}
+g(x+g(g(z)))&=g(x)+g(z)\quad \forall x,z \in \mathbb{R}^{+}\\
+g(x+z)&=g(x)+g(z).
+\tag*{}\end{align*}
+$$
+Identifying this as Cauchy's functional equation, we would hope that $g$ being an involution restricts the solution set to only the functions $g(x)=\pm x$. Unfortunately, this isn't the case: there are many pathological solutions, which can be characterized as such:
+Let $U,V \subseteq \mathbb{R}$ be subspaces of $\mathbb{R}$ considered as a vector space over $\mathbb{Q}$, such that $\mathbb{R}=U \oplus V$. Then any $r \in \mathbb{R}$ has a unique decomposition $r=u+v$, where $u \in U$ and $v \in V$. Define
+$$
+\begin{align*}
+g(u+v)&=u-v \quad \forall u \in U,v \in V.
+\tag*{}\end{align*}
+$$
+Then for any $x=a+b$ and $y=c+d$ where $a,c \in U,b,d \in V$, we have that
+$$
+\begin{align*}
+g(a+b+g(c+d))&=g(a+b+c-d)\\
+&=a-b+c+d\\
+&=g(x)+y,
+\tag*{}\end{align*}
+$$
+so $g$ satisfies the functional equation. 
+To relate this to the usual construction for a pathological solution to Cauchy's functional equation, we take a Hamel basis $\mathcal{B}$, and then for each basis vector $b_{i}$, $g$ restricted to $b_{i}\mathbb{Q}$ is of the form $g(x)=cx$ for some $c \in \mathbb{R}$. Since $g$ is also an involution, we must have $c=\pm1$, so we just define $U$ as the span of the basis vectors where we take $c=1$ and $V$ as the span where we take $c=-1$.
+
+Wrapping things up, any solution of the functional equation in $g$ is given by
+$$
+\begin{align*}
+g(u+v)&=u-v \quad u \in U, v \in V
+\tag*{}\end{align*}
+$$
+for subspaces $U,V \subseteq \mathbb{R}$ such that $\mathbb{R}=U \oplus V$. Converting back to $f$, we have that
+$$
+\begin{align*}
+\ln(f(e^{u+v}))&=u-v \quad u \in U,v \in V\\
+f(e^{u}e^{v})&=\frac{e^{u}}{e^{v}}.
+\tag*{}\end{align*}
+$$
+To make this a bit nicer, note that $\mathbb{R}^{+}$ forms a vector space over $e^{\mathbb{Q}}=\{ e^{q} \mid q \in \mathbb{Q} \}$ with vector addition being multiplication and scalar multiplication $e^{q}\cdot r:=r^{q}$ (this is really just transporting the structure of $\mathbb{R}$ as a vector space over $\mathbb{Q}$ onto $\mathbb{R}^{+}$ via the bijection $\exp$). 
+
+So with that in mind, any solution of the original functional equation is of the form
+$$
+\begin{align*}
+f(uv)&=\frac{u}{v}\quad u \in U,v \in V,
+\tag*{}\end{align*}
+$$
+where $U,V$ are subspaces of $\mathbb{R}^{+}$ as a vector space over $e^{\mathbb{Q}}$ such that every $r \in \mathbb{R}^{+}$ has a unique decomposition $r=uv$ for some $u \in U,v \in V$. Namely, the only continuous solutions are
+$$
+\begin{align*}
+f(x)=x\quad \text{and} \quad f(x)=\frac{1}{x}.
+\tag*{}\end{align*}
+$$
+

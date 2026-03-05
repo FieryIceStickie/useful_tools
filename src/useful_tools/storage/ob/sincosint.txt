@@ -1,0 +1,55 @@
+We want to evaluate the integral
+$$
+\begin{align*}
+I&=\int_{0}^{\frac{\pi}{2} } \frac{2(1-\sin x\cos x)}{1+\sin x+\cos x+\sin x\cos x}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Firstly, factorising the denominator, we get
+$$
+\begin{align*}
+I&=\int_{0}^{\frac{\pi}{2} } \frac{2(1-\sin x\cos x)}{(1+\sin x)(1+\cos x)}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+The $2$ in the numerator is reminscient of partial fractions, and we indeed have that
+$$
+\begin{align*}
+\frac{1-\sin x}{1+\sin x}+ \frac{1-\cos x}{1+\cos x}&= \frac{2(1-\sin x\cos x)}{(1+\sin x)(1+\cos x)},
+\tag*{}\end{align*}
+$$
+so, along with the symmetry substitution $x\mapsto \frac{\pi}{2}-x$ we get
+$$
+\begin{align*}
+I&=\int_{0}^{\frac{\pi}{2} } \frac{1-\sin x}{1+\sin x}+\frac{1-\cos x}{1+\cos x}\,\mathrm{d}x\\
+&= 2\int_{0}^{\frac{\pi}{2} } \frac{1-\cos x}{1+\cos x}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Multiplying numerator and denominator by $1-\cos x$, we get
+$$
+\begin{align*}
+I&= 2 \int_{0}^{\frac{\pi}{2} } \frac{(1-\cos x)^{2}}{1-\cos^{2}x}\,\mathrm{d}x\\
+&=2\int_{0}^{\frac{\pi}{2} } \left( \frac{1-\cos x}{\sin x} \right)^{2}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Letting $t=\tan\left( \frac{x}{2} \right)$, we derive the following tangent half angle identity:
+$$
+\begin{align*}
+\frac{1-\cos x}{\sin x}&= \frac{1-\frac{1-t^{2}}{1+t^{2}}}{\frac{2t}{1+t^{2}}}\\
+&= \frac{1+t^{2}-(1-t^{2})}{2t}\\
+&=t.
+\tag*{}\end{align*}
+$$
+Thus
+$$
+\begin{align*}
+I&=2\int_{0}^{\frac{\pi}{2} } \tan^{2}\left( \frac{x}{2} \right)\,\mathrm{d}x\\
+&=2\int_{0}^{\frac{\pi}{2} }\sec^{2}\left( \frac{x}{2} \right)-1 \,\mathrm{d}x\\
+&=4\left[ \tan\left( \frac{x}{2} \right) \right]_{0}^{\frac{\pi}{2}}-\pi\\
+&=4-\pi.
+\tag*{}\end{align*}
+$$
+Hence
+$$
+\begin{align*}
+\int_{0}^{\frac{\pi}{2} } \frac{2(1-\sin x\cos x)}{1+\sin x+\cos x+\sin x\cos x}\,\mathrm{d}x&=4-\pi.
+\tag*{}\end{align*}
+$$

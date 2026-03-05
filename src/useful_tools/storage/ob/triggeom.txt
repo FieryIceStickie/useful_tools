@@ -1,0 +1,25 @@
+For the geometric sequence where $a_1=\sin x,a_2=\cos x,a_3=\tan x$ for some $x\in\mathbb R$, we want to find all $a_n$ such that $a_n=1+\cos x$.
+
+Let $r$ be the common ratio. We have that $r=\frac{a_2}{a_1}=\frac{a_3}{a_2}$, so
+
+$$\begin{align*}\frac{\cos x}{\sin x}&=\frac{\tan x}{\cos x}\\\cos^3x&=\sin^2x\\0&=\cos^3x+\cos^2x-1.\end{align*}$$
+One can check with calculus that the polynomial $x^{3}+x^{2}-1$ has one positive real root, so $\cos x>0$. Thus the sequence $a_n$ is given by
+$$\begin{align*}a_n&=\sin x\left(\frac{\cos x}{\sin x}\right)^{n-1}\\&=\frac{\cos^{n-1}x}{\sin^{n-2}x}.\end{align*}$$
+Since we know that $1+\cos x>0$, we take the modulus (as $\sin^{n-2} x$ may be negative), and thus
+$$
+\begin{align*}
+| a_{n} |&= \cos(x)^{n-1-\frac{3}{2}(n-2)}\\&=\cos(x)^{2-\frac{n}{2}}
+\tag*{}\end{align*}
+$$
+Since
+$$\begin{align*}\cos^3x+\cos^2x-1&=0\\\cos^2x(1+\cos x)&=1\\1+\cos x&=\cos(x)^{-2},\tag*{}\end{align*}$$
+we equate powers to get that $2-\frac n2=-2$ and thus $n=8$, and we can confirm that
+$$
+\begin{align*}
+a_{8}&= \frac{\cos^{7}x}{\sin^{6}x}\\
+&=\frac{\cos^{7}x}{\cos^{9}x}\\
+&=\frac{1}{\cos^{2}x}\\
+&=1+\cos x,
+\tag*{}\end{align*}
+$$
+as required. Furthermore, this solution is unique because $\cos(x)^{n}$ is strictly monotone in $n$ for $\cos(x) \in(0,1)$.

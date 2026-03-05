@@ -1,0 +1,115 @@
+We want to evaluate the infinite sum
+$$
+\begin{align*}
+\sum_{n=0}^{\infty} \frac{1}{(4n+1)(4n+2)(4n+3)(4n+4)}.
+\tag*{}\end{align*}
+$$
+There is a nice theorem for infinite sums of rational functions in terms of a finite sum of the polygamma functions. Let $P(z),Q(z) \in \mathbb{C}[z]$ and consider the sum
+$$
+\begin{align*}
+S&=\sum_{n=0}^{\infty} \frac{P(n)}{Q(n)}.
+\tag*{}\end{align*}
+$$
+We will presume that $0 \notin Q(-\mathbb{N})$, so $Q(0),Q(-1),\dots$ are all nonzero, for the sum to be defined, and that $\deg(Q)-\deg(P)>1$ in order for the sum to converge by the limit comparison test, and in fact we have absolute convergence. Let's start off by looking at the series for each of the polygamma functions. We have
+$$
+\begin{align*}
+\psi(z)&=-\gamma+\sum_{n=0}^{\infty} \left( \frac{1}{1+n}-\frac{1}{z+n} \right),\\
+\psi^{(m)}(z)&=\sum_{n=0}^{\infty} \frac{(-1)^{m+1}m! }{(z+n)^{m+1}},\quad m\ge1.
+\tag*{}\end{align*}
+$$
+We start off by doing partial fractions. Let $Q(n)$ have roots $-r_{1},\dots,-r_{p}$ with multiplicities $k_{1},\dots,k_{p}$. Then we have an expansion of the form
+$$
+\begin{align*}
+\frac{P(n)}{Q(n)}&=\sum_{j=1}^{p} \sum_{v=1}^{k_{j}} \frac{a_{j,v}}{(n+r_{j})^{v}}.
+\tag*{}\end{align*}
+$$
+For $v>1$, we directly have
+$$
+\begin{align*}
+\sum_{n=0}^{\infty} \frac{a_{j,v}}{(n+r_{j})^{v}}&= \frac{(-1)^{v}a_{j,v}}{(v-1)!} \psi^{(v-1)}(r_{j}).
+\tag*{}\end{align*}
+$$
+For $v=1$, we first consider the sum of all the $a_{j,1}$, which we note are the residues of $\frac{P(z)}{Q(z)}$ at each of the roots. Taking a circle $\Gamma_{R}$ of radius $R$ around $z=0$ traversed anticlockwise, for sufficiently large $R$ this contains all the poles, so by the residue theorem
+$$
+\begin{align*}
+\int_{\Gamma_{R}} \frac{P(z)}{Q(z)}\,\mathrm{d}z&=2\pi i \sum_{j=1}^{p} a_{j,1}.
+\tag*{}\end{align*}
+$$
+By usual estimates, for sufficiently large $R$ we have that
+$$
+\begin{align*}
+\left|\frac{P(z)}{Q(z)}\right|=O\left( \frac{1}{R^{2}} \right)
+\tag*{}\end{align*}
+$$
+on $\Gamma_{R}$ by our initial assumption for convergence, so with the ML lemma we get
+$$
+\begin{align*}
+\left|\int_{\Gamma_{R}} \frac{P(z)}{Q(z)}\,\mathrm{d}z\right|&=O\left( \frac{1}{R} \right).
+\tag*{}\end{align*}
+$$
+Taking $R\to \infty$ then yields
+$$
+\begin{align*}
+\sum_{j=1}^{p} a_{j,1}=0.
+\tag*{}\end{align*}
+$$
+Going back to the sum, for $v=1$ we use absolute convergence after adding a suitable normalisation factor, so
+$$
+\begin{align*}
+\sum_{n=0}^{\infty} \sum_{j=1}^{p}\frac{a_{j,1}}{n+r_{j}}&=-\sum_{n=0}^{\infty} \sum_{j=1}^{p} \left( \frac{a_{j,1}}{n+1}-\frac{a_{j,1}}{n+r_{j}} \right)\\
+&=-\sum_{j=1}^{p} a_{j,1}\sum_{n=0}^{\infty} \left( \frac{1}{n+1}-\frac{1}{n+r_{j}} \right)\\
+&=-\sum_{j=1}^{p} a_{j,1}(\psi(r_{j})+\gamma)\\
+&=-\sum_{j=1}^{p} a_{j,1}\psi(r_{j}).
+\tag*{}\end{align*}
+$$
+This also fits the formula for $v>1$ derived above, we just had to consider the sum as a whole due to convergence. 
+
+Let $P(z),Q(z) \in \mathbb{C}[z]$ such no negative integer is a root of $Q$ and $\deg(Q)-\deg(P)>1$. Furthermore suppose we have a partial fraction decomposition
+$$
+\begin{align*}
+\frac{P(n)}{Q(n)}&=\sum_{j=1}^{p} \sum_{v=1}^{k_{j}} \frac{a_{j,v}}{(n+r_{j})^{v}}.
+\tag*{}\end{align*}
+$$
+Then
+$$
+\begin{align*}
+\sum_{n=0}^{\infty} \frac{P(n)}{Q(n)}&= -\sum_{j=1}^{p} \sum_{v=1}^{k_{j} } \frac{(-1)^{v}a_{j,v}}{(v-1)!} \psi^{(v-1)}(r_{j}).
+\tag*{}\end{align*}
+$$
+---
+Going back to the original question, let $S$ denote the sum., using the coverup method we have
+$$
+\begin{align*}
+\frac{1}{(4n+1)(4n+2)(4n+3)(4n+4)}&= \frac{1/6}{4n+1}+ \frac{-1 /2}{4n+2}+ \frac{1 /2}{4n+3}+ \frac{-1 /6}{4n+4}\\
+&= \frac{1 /24}{n+\frac{1}{4}}+ \frac{-1 /8}{n+\frac{1}{2}}+ \frac{1 /8}{n+\frac{3}{4}}+ \frac{-1 /24}{n+1},
+\tag*{}\end{align*}
+$$
+so
+$$
+\begin{align*}
+S&= -\frac{1}{24}\psi\left( \frac{1}{4} \right)+\frac{1}{8}\psi\left( \frac{1}{2} \right)-\frac{1}{8}\psi\left( \frac{3}{4} \right)+\frac{1}{24}\psi(1).
+\tag*{}\end{align*}
+$$
+We can now use Gauss' digamma theorem to evaluate the first three digamma values, and $\psi(1)=-\gamma$ is pretty well known. We get that
+$$
+\begin{align*}
+\psi\left( \frac{1}{4} \right)&=-\gamma-3\ln(2)-\frac{\pi}{2},\\
+\psi\left( \frac{1}{2} \right)&=-\gamma-2\ln(2),\\
+\psi\left( \frac{3}{4} \right)&=-\gamma-3\ln(2)+\frac{\pi}{2}.
+\tag*{}\end{align*}
+$$
+Noting that the sum of the coefficients is $0$ from prior analysis, the $\gamma$s disappear and we get that
+$$
+\begin{align*}
+S&=\left(\frac{1}{8}-\frac{1}{4}+\frac{3}{8} \right) \ln(2)+\left( \frac{1}{48}-\frac{1}{16} \right)\pi\\
+&=\frac{1}{4}\ln(2)-\frac{\pi}{24}.
+\tag*{}\end{align*}
+$$
+Hence
+$$
+\begin{align*}
+\sum_{n=0}^{\infty} \frac{1}{(4n+1)(4n+2)(4n+3)(4n+4)}&=\frac{1}{4}\ln(2)-\frac{\pi}{24}.
+\tag*{}\end{align*}
+$$
+
+

@@ -1,0 +1,22 @@
+We want to show that
+$$
+\begin{align*}
+\binom{ pa }{ pb }\equiv \binom{ a }{ b } \pmod p,
+\tag*{}\end{align*}
+$$
+where $p$ is some prime.
+
+The efficient method would be to apply Lucas' theorem, which finishes the proof immediately. Here's a group theoretic solution, inspired by the group theoretic proof of Lucas' theorem:
+
+Let $A$ be some set with $a$ elements, and let $\mathbb{Z}_{p}=\mathbb{Z}/p\mathbb{Z}$ be the cyclic group on $p$ elements. We can define a group action of $\mathbb{Z}_{p}$ on $A \times \mathbb{Z}_{p}$ by $n \cdot(a, m)=(a,n+m)$.
+
+Consider the set $S=\{ B \subseteq A \times \mathbb{Z}_{p}:| B |=pb \}$. The group action on $A \times \mathbb{Z}_{p}$ induces a group action on $S$ by $g\cdot S=\{ g\cdot s : s \in S \}$. How many fixed points of $G$ in $S$ are there? Well, since $\mathbb{Z}_{p}$ acts on itself by left addition transitively, the orbit of any $(a,m) \in A \times \mathbb{Z}_{p}$ is $\{ a \}\times \mathbb{Z}_{p}$, which has size $p$. Thus, any fixed point of $G$ in $S$ must be of the form $B \times \mathbb{Z}_{p}$ for some $B \subseteq A$, with $| B |=b$. There are $\binom{ a }{ b }$ such subsets $B$, so there are $\binom{ a }{ b }$ fixed points.
+
+Since $\mathbb{Z}_{p}$ is a $p$-group, from the class equation the size of $S$ is equivalent to the number of fixed points modulo $p$. Since $| S |=\binom{ pa }{ pb }$, we get that
+$$
+\begin{align*}
+\binom{ pa }{ pb } \equiv \binom{ a }{ b }\pmod p.
+\tag*{}\end{align*}
+$$
+
+

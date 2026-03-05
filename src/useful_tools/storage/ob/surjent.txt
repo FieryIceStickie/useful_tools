@@ -1,0 +1,26 @@
+Presumably, surjective in this context implies the codomains should be $\mathbb{C}$. Now let
+$$
+\begin{align*}
+f(z)&= \frac{e^{z}-1}{z}\\
+g(z)&= z,
+\tag*{}\end{align*}
+$$
+where we define $f(0)=1$. We can see that $f$ and $g$ are both entire, and $g$ is clearly surjective, while $f(z)g(z)=e^{z}-1$ is not surjective since it is never equal to $-1$. So, it suffices to show that $f$ is surjective.
+
+Our goal is to show that $f(z)=\alpha$ has a solution for all $\alpha \in \mathbb{C}$. If $\alpha=0$ then $f(2\pi i)=0$. Otherwise, we have
+$$
+\begin{align*}
+\frac{e^{z}-1}{z}&=\alpha\\
+1+\alpha z&=e^{z}.
+\tag*{}\end{align*}
+$$
+We do a bit of algebra to express this in terms of the Lambert $W$ function, noting that $\alpha\neq0$:
+$$
+\begin{align*}
+(1+\alpha z)e^{-z-\frac{1}{\alpha}}&=e^{-\frac{1}{\alpha}}\\
+-\left( z+\frac{1}{\alpha} \right)e^{-z-\frac{1}{\alpha}}&=-\frac{1}{\alpha}e^{-\frac{1}{\alpha}}\\
+-z-\frac{1}{\alpha}&=W\left( -\frac{1}{\alpha}e^{-\frac{1}{\alpha}} \right)\\
+z&=-W\left( -\frac{1}{\alpha}e^{-\frac{1}{\alpha}} \right)-\frac{1}{\alpha},
+\tag*{}\end{align*}
+$$
+where $W$ is any branch of the Lambert $W$ function. Thus $f$ attains the value $\alpha$ for any $\alpha \in \mathbb{C}$, and so the product of two surjective entire functions is not necessarily surjective.

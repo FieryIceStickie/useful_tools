@@ -1,0 +1,50 @@
+We want to find the digits to the left and right of the radix point in the decimal expansion of
+$$
+\begin{align*}
+(\sqrt{ 3 }+\sqrt{ 2 })^{2000}.
+\tag*{}\end{align*}
+$$
+Let $\alpha=\sqrt{ 3 }+\sqrt{ 2 }$ and $\beta=\sqrt{ 3 }-\sqrt{ 2 }$. Then letting $N$ be the sum of their $2000$-th powers, we have
+$$
+\begin{align*}
+N&=(\sqrt{ 3 }+\sqrt{ 2 })^{2000}+(\sqrt{ 3 }-\sqrt{ 2 })^{2000}\\
+&=\sum_{k=0}^{2000} \binom{ 2000 }{ k }\left( \sqrt{ 3 }^{k}\sqrt{ 2 }^{2000-k}+\sqrt{ 3 }^{k}(-\sqrt{ 2 })^{2000-k} \right)\\
+&=2\sum_{k=0}^{1000} \binom{ 2000 }{ 2k }3^{k}2^{1000-k}.
+\tag*{}\end{align*}
+$$
+Since $0<\beta^{2000}<0.01$, it suffices to look at the digits in $N$ and recover the digits in $\alpha^{2000}$ afterwards. Since $N \in \mathbb{N}$ by the above expression, we know that the digit to the right of the radix point will be $9$ (and since $\beta^{2000}$ is so small the next couple of digits would also be $9$).
+
+The unit digit (digit to the left of the radix point) is a bit more work. From above, we can compute $N \bmod 10$ to get $N$'s unit digit, and $\alpha^{2000}$'s unit digit will be the one prior. By the Chinese remainder theorem, we can analyze $N \bmod2$ and $N \bmod5$ separately, and we note that $N\equiv0 \pmod2$ because it's a multiple of $2$.
+
+Computing $N \bmod 5$ turns out to be a bit harder. Now, since $2000$ is divisible by $5^{3}=125$, a lot of the binomial coefficients go to $0 \bmod5$, but not all of them. How can we figure out which ones don't go to $0$? Well, we make use of Lucas' theorem. The base $5$ expansion of $2000$ is $31000_{5}$, so if
+$\binom{ 31000_{5} }{ m }$ is nonzero modulo $5$, writing $m$ in base $5$ as
+$$
+\begin{align*}
+m&=\sum_{k=0}^{4} m_{k}5^{k},\quad0\le m_{k}<5
+\tag*{}\end{align*}
+$$
+we need $m_{0}=m_{1}=m_{2}=0,m_{3}\le1,m_{4}\le3$. If we further note that we need $m$ to be even (as the coefficients in the sum have lower part even), then the only values for $m$ are
+$$
+\begin{align*}
+m &\in \{ 00000_{5},11000_{5},20000_{5},31000_{5}\},\\
+m &\in \{ 0,750,1250,2000 \}.
+\tag*{}\end{align*}
+$$
+We can pair them up so that each pair sums to $2000$, and use the symmetry identity for the binomial coefficient to reduce work, noting that we can just ignore the $k=500$ term since that is $0$ from above. For the modular arithmetic, note that $\varphi(5)=4$ so we can reduce modulo $4$, and that $2^{-1}\equiv3 \pmod5$, and so we get
+$$
+\begin{align*}
+N&\equiv 2 \sum_{k=0}^{499} \binom{ 2000 }{ 2k }\left( 3^{k}2^{1000-k}+3^{1000-k}2^{k} \right)\\
+&\equiv2 \sum_{k=0}^{499} \binom{ 2000 }{ 2k }(3^{2k}+3^{-2k})\\
+&\equiv2 \sum_{k=0}^{499} \binom{ 2000 }{ 2k }((-1)^{k}+(-1)^{-k})\\
+&\equiv4 \sum_{k=0}^{499} \binom{ 2000 }{ 2k }(-1)^{k}\\
+&\equiv-\left( \binom{ 2000 }{ 0 }(-1)^{0}+\binom{ 2000 }{ 750 }(-1)^{375} \right)\\
+&\equiv-1+\binom{ 3 }{ 1 }\binom{ 1 }{ 1 }\binom{ 0 }{ 0 }\binom{ 0 }{ 0 }\binom{ 0 }{ 0 }\\
+&\equiv 2 \pmod 5.
+\tag*{}\end{align*}
+$$
+Hence $N \equiv2 \pmod{10}$, and we get that
+$$
+\begin{align*}
+(\sqrt{ 2 }+\sqrt{ 3 })^{2000}&=\dots1.9\dots
+\tag*{}\end{align*}
+$$

@@ -1,0 +1,63 @@
+We want to evaluate the integral with $k \in \mathbb{Z}^{+},a \in[0,1]$ given by
+$$
+\begin{align*}
+\int_{0}^{\infty} \frac{\sin^{k}(x)\cos((k-a)x)}{x^{k}}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+I'm going to reparameterize into
+$$
+\begin{align*}
+I(n,m)&=\int_{0}^{\infty} \frac{\sin^{n}(x)}{x^{n}}\cos(mx)\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Firstly, we rescale in terms of $\pi$ and use symmetry to rewrite it as a Fourier transform:
+$$
+\begin{align*}
+I(n,m)&=\frac{\pi}{2}\int_{-\infty}^{\infty} \frac{\sin^{n}(\pi x)}{(\pi x)^{n}}\cos(\pi mx)\,\mathrm{d}x\\
+&=\frac{\pi}{2}\int_{-\infty}^{\infty} \sinc^{n}(x)e^{-2\pi i\left( \frac{m}{2} \right)x}\,\mathrm{d}x\\
+&=\frac{\pi}{2}\mathcal{F}\{ \sinc^{n}(x) \}\left( \frac{m}{2} \right)
+\tag*{}\end{align*}
+$$
+Next, we note that by the convolution theorem
+$$
+\begin{align*}
+\mathcal{F}\{ \sinc^{n}(x) \}(s)&=\operatorname{rect}(s)*\overbrace{\dots}^{n \text{ times}}* \operatorname{rect}(s).
+\tag*{}\end{align*}
+$$
+It turns out there is a well known formula for this, namely the Irwin-Hall distribution, which tells us that
+$$
+\begin{align*}
+\{U_{[0,1]}*\dots *U_{[0,1]}\}(x)&=\frac{1}{(n-1)!}\sum_{k=0}^{\lfloor x\rfloor}(-1)^{k}\binom{ n }{ k }(x-k)^{n-1},
+\tag*{}\end{align*}
+$$
+where $U_{[0,1]}$ is the pdf for the uniform probability distribution on $[0,1]$. Namely $\operatorname{rect}(x)=U_{[0,1]}\left( x+\frac{1}{2} \right)$, so
+$$
+\begin{align*}
+I(n,m)&=\frac{\pi}{2}\frac{1}{(n-1)!}\sum_{k=0}^{\left\lfloor  \frac{m+n}{2}  \right\rfloor } (-1)^{k}\binom{ n }{ k }\left( \frac{m+n}{2}-k \right)^{n-1}.
+\tag*{}\end{align*}
+$$
+There is one minor issue, which is when $n=m=1$, because of the pesky $0^{0}$ situation. Usually $0^{0}=1$ works fine when dealing with combinatorics, but in this case whether $U_{[0,1]}(1)=0$ or $1$ does actually matter because we're dealing with a specific value of a Fourier transform. One can quickly compute
+$$
+\begin{align*}
+I(1,1)&=\int_{0}^{\infty} \frac{\sin(x)\cos(x)}{x}\,\mathrm{d}x\\
+&=\int_{0}^{\infty} \frac{\sin(2x)}{2x}\,\mathrm{d}x\\
+&=\frac{\pi}{4}.
+\tag*{}\end{align*}
+$$
+Noting symmetry, we can turn $k-a$ into $a-k$ to get that
+$$
+\begin{align*}
+\int_{0}^{\infty} \frac{\sin^{k}(x)\cos((k-a)x)}{x^{k}}\,\mathrm{d}x&=\frac{\pi}{2(k-1)!}\sum_{j=0}^{\left\lfloor  \frac{a}{2}  \right\rfloor } (-1)^{j}\binom{ k }{ j }\left( \frac{a}{2}-j \right)^{k-1}\\
+&=\frac{\pi}{2(k-1)!}\left( \frac{a}{2} \right)^{k-1}\\
+&=\frac{\pi a^{k-1}}{2^{k}(k-1)!}.
+\tag*{}\end{align*}
+$$
+Hence we get that
+$$
+\begin{align*}
+\int_{0}^{\infty} \frac{\sin^{k}(x)\cos((k-a)x)}{x^{k}}\,\mathrm{d}x&=\begin{cases}
+\frac{\pi}{4} & k=1,a=0 \\
+\frac{\pi a^{k-1}}{2^{k}(k-1)!} & \text{otherwise}.
+\end{cases}
+\tag*{}\end{align*}
+$$

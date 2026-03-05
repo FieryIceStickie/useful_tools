@@ -1,0 +1,34 @@
+We want to show that
+$$\begin{align*}\sum_{i=1}^n(-1)^{n+i}\binom ni\binom{in}n=n^n.\tag*{}\end{align*}$$
+First, we can add $i=0$ to the summation as it is zero. Then, we can invert the order of summation, so it suffices to prove that
+$$\begin{align*}\sum_{i=0}^n(-1)^{i}\binom ni\binom{n(n-i)}n=n^n.\tag*{}\end{align*}$$
+We now proceed with the inclusion-exclusion principle, more precisely the following corollary: Let $S$ be a finite set, and $A_1,\dots,A_n$ subsets of $S$. Then
+$$\begin{align*}\left|S\setminus\bigcup_{k=1}^nA_k\right|&=\sum_{J\subseteq \{1,\dots,n\}}(-1)^{|J|}\left|\bigcap_{j\in J}A_j\right|.\tag*{}\end{align*}$$
+Note that we interpret the empty intersection as $S$. If
+$$
+\begin{align*}
+\left| \bigcap_{j \in J}A_{j} \right| &=f(|J|)
+\tag*{}\end{align*}
+$$
+for some function $f:\{ 0 ,\dots,n \}\to \mathbb{N}$, then we get
+$$
+\begin{align*}
+\left| S \setminus \bigcup_{k=1}^{n} A_{k} \right| &=\sum_{k=0}^{n} (-1)^{k}\binom{ n }{ k }f(k).
+\tag*{}\end{align*}
+$$
+Going back to our problem, let $A=\{ 1, \dots,n \}$, so that $| A |=n$. We choose $S$ to be the set of size $n$ subsets of $A \times A$, and $A_{i}$ to be the set of subsets in $S$ that do not contain an element from row $i$. Formally,
+$$
+\begin{align*}
+S&=\{ X \subseteq A \times A: | X |=n \}\\
+A_{i}&=\{ X \in S:\forall x,y \in A,(x,y)\in S \implies x\neq i \}.
+\tag*{}\end{align*}
+$$
+On the one hand, if an element $X$ of $S$ is not in any of the $A_{i}$, then it has to contain an element in every row. Since there are $n$ rows and $| X |=n$, these are precisely the functions from $A$ to $A$, of which there are $n^{n}$.
+
+On the other hand, the intersection of $\left| \bigcap_{i \in I}A_{i} \right|$ are the elements of $S$ that don't contain elements in row $i$ for each $i \in I$. That leaves the other $n-i$ rows to choose from, or $n(n-i)$ elements to choose $n$ elements from, of which there are $\binom{ n(n-i) }{ n }$ ways to do so. This is dependent only on $| I |$, so from the inclusion-exclusion principle we get
+$$
+\begin{align*}
+n^{n}&=\sum_{i=0}^{n} (-1)^{i} \binom{ n }{ i } \binom{ n(n-i) }{ n },
+\tag*{}\end{align*}
+$$
+as required.

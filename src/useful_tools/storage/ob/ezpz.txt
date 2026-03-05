@@ -1,0 +1,76 @@
+We want to find all functions $f: \mathbb{R}\to \mathbb{R}$ such that
+$$
+\begin{align*}
+f(x+yf(x))&=xy+f(x)\quad \forall x,y \in \mathbb{R}.
+\tag*{}\end{align*}
+$$
+Let's hope I don't make any mistakes this time. Starting off, setting $x=0$ yields
+$$
+\begin{align*}
+f(f(0)y)&=f(0)\quad\forall y \in \mathbb{R}.
+\tag*{}\end{align*}
+$$
+If $f(0)\neq0$, then setting $y=zf(0)^{-1}$ yields
+$$
+\begin{align*}
+f(z)&=f(0)\quad \forall z \in \mathbb{R},
+\tag*{}\end{align*}
+$$
+which gives us the family of constant solutions $f(x)=c$. Substituting into the original functional equation, we would have
+$$
+\begin{align*}
+c&=xy+c\\
+xy&=0\quad \forall x,y \in \mathbb{R},
+\tag*{}\end{align*}
+$$
+so none of these are solutions.
+Otherwise, we have $f(0)=0$. Furthermore, if $f(s)=0$ for some $s \in \mathbb{R}$, then setting $x=s$ yields
+$$
+\begin{align*}
+f(s+yf(s))&=sy+f(s)\quad \forall y \in \mathbb{R}\\
+f(s)&=sy.
+\tag*{}\end{align*}
+$$
+Since the left is constant w.r.t $y$, we must have $s=0$, so $f(s)=0 \iff s=0$.
+Next, setting $x=1$ gives us
+$$
+\begin{align*}
+f(1+yf(1))&=y+f(1)\quad \forall y \in \mathbb{R}.
+\tag*{}\end{align*}
+$$
+Since $f(1)\neq0$ from above, we can set $y=-f(1)^{-1}$ to get
+$$
+\begin{align*}
+f(1-f(1)^{-1}f(1))&=f(1)-f(1)^{-1}\\
+0&=f(1)-f(1)^{-1}\\
+f(1)^{2}&=1.
+\tag*{}\end{align*}
+$$
+If $f(1)=-1$ then setting $x=1,y=1-t$ for any $t \in \mathbb{R}$ yields
+$$
+\begin{align*}
+f(1-(1-t))&=1-t+f(1)\\
+f(t)&=-t\quad \forall t \in \mathbb{R}.
+\tag*{}\end{align*}
+$$
+Otherwise, if $f(1)=1$ then setting $x=1,y=t-1$ for any $t \in \mathbb{R}$ yields
+$$
+\begin{align*}
+f(1+t-1)&=t-1+1\\
+f(t)&=t\quad \forall t \in \mathbb{R}.
+\tag*{}\end{align*}
+$$
+Thus we get the solutions $f(x)=x$ and $f(x)=-x$. Checking that these are solutions is straightforward; the identity is obviously a solution, and for $f(x)=-x$ we have:
+$$
+\begin{align*}
+f(x+yf(x))=-(x+y(-x))=xy-x=xy+f(x).
+\tag*{}\end{align*}
+$$
+Thus, the only solutions to the functional equation are
+$$
+\begin{align*}
+f(x)=x \text{ or } f(x)=-x.
+\tag*{}\end{align*}
+$$
+
+

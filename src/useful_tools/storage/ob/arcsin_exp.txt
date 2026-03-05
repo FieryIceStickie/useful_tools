@@ -1,0 +1,29 @@
+We want to evaluate the integral
+$$
+\begin{align*}
+I&=\int_{0}^{\infty} \arcsin(e^{-x})\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Well, $\arcsin(e^{-x})$ doesn't look very nice to integrate. You could try IBP and differentiating the $\arcsin$, but instead, let's take a look at what the inverse looks like: if $y=\arcsin(e^{-x})$, then $x=-\ln(\sin y)$. A trig function in a logarithm is much more familiar, so let's try that. Over $x \in(0,\infty)$, everything is decreasing and continuous, with the range being $y \in\left( 0,\frac{\pi}{2} \right)$, so if we integrate the curve over the $y$ axis instead, we get that (formally we'd apply [this theorem](https://en.wikipedia.org/wiki/Integral_of_inverse_functions))
+$$
+\begin{align*}
+I&=-\int_{0}^{\frac{\pi}{2} }\ln(\sin y) \,\mathrm{d}y.
+\tag*{}\end{align*}
+$$
+At this point, one could just quote the result that $I=-\frac{\pi}{2}\ln2$, since this is a rather famous integral. I'll leave an elementary proof here for completion's sake:
+$$
+\begin{align*}
+J&=\int_{0}^{\frac{\pi}{2} }\ln(\sin x)\,\mathrm{d}x\\
+&=\frac{1}{2}\int_{0}^{\frac{\pi}{2} }\ln(\sin x)+\ln(\cos x)\,\mathrm{d}x\\
+&=\frac{1}{2}\int_{0}^{\frac{\pi}{2} }\ln(\sin2x)\,\mathrm{d}x-\frac{\pi}{4}\ln2\\
+&=\frac{1}{4}\int_{0}^{\pi} \ln(\sin x)\,\mathrm{d}x-\frac{\pi}{4}\ln2\\
+&=\frac{1}{2}J-\frac{\pi}{4}\ln2 \\
+J&=-\frac{\pi}{2}\ln2.
+\tag*{}\end{align*}
+$$
+Thus we get that
+$$
+\begin{align*}
+\int_{0}^{\infty} \arcsin(e^{-x})\,\mathrm{d}x&=\frac{\pi}{2}\ln2.
+\tag*{}\end{align*}
+$$

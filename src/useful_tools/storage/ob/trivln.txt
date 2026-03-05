@@ -1,0 +1,20 @@
+We want to evaluate the integral
+$$
+\begin{align*}
+I&=\int \frac{x \ln x+1-x}{x \ln^{2}x}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Noting that $\int \ln x \,\mathrm{d}x=x \ln x-x+C$, we perform integration by parts with $u=x \ln x+1-x$ and $\displaystyle\mathrm{d}v=\frac{1}{x \ln^{2}x}$. This yields
+$$
+\begin{align*}
+I&=- \frac{x \ln x+1-x}{\ln x}+\int \frac{\ln x}{\ln x}\,\mathrm{d}x\\
+&=x-x+ \frac{x-1}{\ln x}+C\\
+&=\frac{x-1}{\ln x}+C.
+\tag*{}\end{align*}
+$$
+Hence,
+$$
+\begin{align*}
+\int \frac{x \ln x+1-x}{x \ln^{2}x}\,\mathrm{d}x&= \frac{x-1}{\ln x}+C.
+\tag*{}\end{align*}
+$$

@@ -1,0 +1,93 @@
+We want to show that for $x>\frac{1}{2}$,
+$$
+\begin{align*}
+\sum_{k=0}^{\infty} \frac{1}{(x+k)\left( x+k+\frac{1}{2} \right)}&\ge \frac{3x^{2}+4x+2}{x(x+1)(2x+1)}-\ln \left( \frac{2x+2}{2x+1} \right).
+\tag*{}\end{align*}
+$$
+A word of warning before we start: I don't know where the expression on the right comes from, so things are about to get very messy; if there was a sledgehammer for inequalities, I imagine it would look something like this.
+
+Letting $S$ denote the expression on the left, we have
+$$
+\begin{align*}
+S&=\sum_{k=0}^{\infty} \frac{1}{(x+k)\left( x+k+\frac{1}{2} \right)}\\
+&=2\sum_{k=0}^{\infty} \left( \frac{1}{x+k}-\frac{1}{x+k+\frac{1}{2}} \right)\\
+&=2\psi\left( x+\frac{1}{2} \right)-2\psi(x).
+\tag*{}\end{align*}
+$$
+Looking ahead, we have a factor of $x$ in the denominator of the rational function, so we use the digamma recurrence to split off a factor of $x$:
+$$
+\begin{align*}
+S&=2\psi\left( x+\frac{1}{2} \right)-2\psi(x+1)+\frac{2}{x}.
+\tag*{}\end{align*}
+$$
+Now, define
+$$
+\begin{align*}
+f(x)&=S- \frac{3x^{2}+4x+2}{x(x+1)(2x+1)}+\ln\left( \frac{2x+2}{2x+1} \right)\\
+&=S- \frac{2}{x}-\frac{1}{x+1}+\frac{3}{2x+1}+\ln\left( \frac{2x+2}{2x+1} \right)\\
+&=2\psi\left( x+\frac{1}{2} \right)-2\psi(x+1)-\frac{1}{x+1}+\frac{3}{2x+1}+\ln\left( \frac{2x+2}{2x+1} \right).
+\tag*{}\end{align*}
+$$
+We now use the asymptotic expansion from Binet's second integral formula for the digamma function for some inequalities:
+$$
+\begin{align*}
+\psi(z)&=\ln z-\frac{1}{2z}-\frac{1}{2}\sum_{k=1}^{N} \frac{B_{2k}}{kz^{2k}}- \frac{(-1)^{N}}{z^{2N}}\int_{0}^{\infty} \frac{t^{2N+1}}{(z^{2}+t^{2})(e^{2\pi t}-1)}\,\mathrm{d}t.
+\tag*{}\end{align*}
+$$
+The first few terms of the series is given by
+$$
+\begin{align*}
+\psi(x)&=\ln x-\frac{1}{2x}-\frac{1}{12x^{2}}+\frac{1}{120x^{4}}-\frac{1}{252x^{6}}\dots
+\tag*{}\end{align*}
+$$
+and from the error term, this is a lower bound for odd $N$ and an upper bound for even $N$. How do we figure out how many terms we need to use? Well, let's look at a graph of $f(x)$:
+![[digamma a.png]]
+The rough shape of the graph is that it crosses the $x$-axis, plateaus, and then decreases towards $0$. If we assume that there isn't another $x$-intercept further along, which is a reasonable initial assumption, then we want to make sure that when we replace the $\psi$ with the series, that root is less than or equal to $\frac{1}{2}$.
+For $\psi\left( x+\frac{1}{2} \right)$, if we take up to the $x^{-2}$ term, then we have a root at $x=0.511\dots$, which is too far along:
+![[digamma b1.png]]So we'll take another two terms, which sends the root back to $x=0.401\dots$, which is acceptable. For the other term, taking up to the $x^{-4}$ term puts the root at $x=0.407\dots$, which is also acceptable. The algebra is not very interesting, and after cleaning up we get that
+$$
+\begin{align*}
+f(x)&\ge \ln\left( \frac{2x+1}{2x+2} \right)\\&+\frac{1}{2x+1}-\frac{2}{3(2x+1)^{2}}+\frac{4}{15\left(2x+1\right)^{4}}-\frac{32}{63\left(2x+1\right)^{6}} 
+\\&+\frac{1}{6\left(x+1\right)^{2}}-\frac{1}{60\left(x+1\right)^{4}}.
+\tag*{}\end{align*}
+$$
+We now take the Taylor series for $\ln(1+x)$, convergent for $| x |<1$:
+$$
+\begin{align*}
+\ln(1+x)&=x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\dots
+\tag*{}\end{align*}
+$$
+If we substitute $\frac{1}{2x+1}$, then for $x>\frac{1}{2}$ this is well within the radius of convergence. Using the Lagrange form of the remainder, we have
+$$
+\begin{align*}
+\ln(1+x)&=-\sum_{k=1}^{n} \frac{(-x)^{k}}{k}+ \frac{f^{(n+1)}(\xi_{n})}{(n+1)!}x^{n+1}
+\tag*{}\end{align*}
+$$
+for some $\xi_{n} \in[0,x]$. For $x>0$, $f^{(n)}(x)$ is positive for odd $n$ and negative for even $n$, so we get a lower bound for even $n$ and an upper bound for odd $n$.
+We note that we want a lower bound for
+$$
+\begin{align*}
+\ln\left( \frac{2x+1}{2x+2} \right)&=-\ln \left( 1+\frac{1}{2x+1} \right),
+\tag*{}\end{align*}
+$$
+so we want an upper bound for the logarithm. Taking $n=3$ puts the root at $x=0.543\dots$, so we take $n=5$, putting the root at $x=0.435\dots$ and get the lower bound
+$$
+\begin{align*}
+\ln\left( \frac{2x+1}{2x+2} \right)\ge-\frac{1}{\left(2x+1\right)}+\frac{1}{2\left(2x+1\right)^{2}}-\frac{1}{3\left(2x+1\right)^{3}} +\frac{1}{4\left(2x+1\right)^{4}}-\frac{1}{5\left(2x+1\right)^{5}}.
+\tag*{}\end{align*}
+$$
+Plugging that in, we end up with a rational function, which after expanding out we get
+$$
+\begin{align*}
+f(x)&\ge \frac{p(x)}{(2x+1)^{6}(x+1)^{4}}
+\tag*{}\end{align*}
+$$
+where
+$$
+\begin{align*}
+p(x)&=8x^{8}+\frac{104x^{7}}{3}+\frac{179x^{6}}{3}+\frac{257x^{5}}{5}+\frac{27353x^{4}}{1260}+\frac{473x^{3}}{315}-\frac{376x^{2}}{105}-\frac{724x}{315}-\frac{341}{630}.
+\tag*{}\end{align*}
+$$
+One can check that this polynomial only has real roots at $x=-1.309\dots$ and $x=0.435\dots$, and since the rational function can only change sign at roots or asymptotes, it has the same sign across $(0.435\dots,\infty)$, and since it is positive as $x\to \infty$ it is positive on $(0.435\dots,\infty)$.
+
+Thus $f(x)\ge0$ on $\left( \frac{1}{2},\infty \right)$, as required. Note that despite the answer containing some graphs, the proof did not rely on any graphical means, and all the inequalities used have rigorous proofs.

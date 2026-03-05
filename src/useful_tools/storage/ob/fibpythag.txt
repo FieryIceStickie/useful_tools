@@ -1,0 +1,42 @@
+Starting with the matrix form for the Fibonacci sequence, we have
+$$
+\begin{align*}
+\begin{pmatrix}
+F_{n+1} & F_{n} \\
+F_{n} & F_{n-1}
+\end{pmatrix}&=\begin{pmatrix}
+1 & 1 \\
+1 & 0
+\end{pmatrix}^{n}.
+\tag*{}\end{align*}
+$$
+If we square both sides, we get that
+$$
+\begin{align*}
+\begin{pmatrix}
+F_{n+1}^{2}+F_{n}^{2} & F_{n+1}F_{n}+F_{n}F_{n-1} \\
+F_{n+1}F_{n}+F_{n}F_{n-1} & F_{n}^{2}+F_{n-1}^{2}
+\end{pmatrix}&=\begin{pmatrix}
+1 & 1 \\
+1 & 0
+\end{pmatrix}^{2n}\\
+&=\begin{pmatrix}
+F_{2n+1} & F_{2n} \\
+F_{2n} & F_{2n-1}
+\end{pmatrix}.
+\tag*{}\end{align*}
+$$
+Equating the top left components, we get the identity
+$$
+\begin{align*}
+F_{2n+1}&=F_{n+1}^{2}+F_{n}^{2}.
+\tag*{}\end{align*}
+$$
+Hence, using the Brahmagupta–Fibonacci identity we get that
+$$
+\begin{align*}
+F_{2n+1}^{2}&=(F_{n+1}^{2}-F_{n}^{2})^{2}+(2F_{n+1}F_{n})^{2}\\
+&=(F_{n+2}F_{n-1})^{2}+(2F_{n+1}F_{n})^{2}.
+\tag*{}\end{align*}
+$$
+Presumably, we want the side lengths to be nonzero, so we would need $F_{n-1}>0$, which happens for $n\ge2$. However, $F_{3}=2$ is also a hypotenuse as $(1,1,2)$ is a right angled triangle. 

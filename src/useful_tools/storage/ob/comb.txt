@@ -1,0 +1,13 @@
+The left looks easier to give a combinatorial interpretation, so let's start there. If we take the complete graph $K_n$, then we have $\binom n2$ edges. There are $\binom{\binom n2}2$ ways to pick two edges, so that's how we interpret the left.
+The right is a bit more subtle, but notice that $\binom {n+1}4$ denotes the number of ways to pick four vertices from $K_{n+1}$. Can we relate this to edges? Well, given four distinct vertices there are exactly $3$ perfect matchings (a choice of two edges in the square so that they share a common vertex), so the right counts the number of ways to choose edges in $K_{n+1}$ such that the edges don't share a common vertex. For convenience, call thos a $2$-matching.
+Thus, we need a bijection between choices of any two edges in $K_n$ and $2$-matchings in $K_{n+1}$. For the setup, let $K_n$ and $K_{n+1}$ have vertices $\{1,\dots,n\},\{1,\dots,n+1\}$ respectively. We have a natural embedding of $K_n$ in $K_{n+1}$ that maps a vertex to itself.
+Informally, pick any two edges in $K_n$. If the edges form a $2$-matching in $K_n$, it forms a $2$-matching in $K_{n+1}$. Otherwise, there are four possibilities for the vertex they meet at, and four edges connected to $n+1$ to swap it for, so we determine some way to deterministically choose which edge to swap with.
+Formally, we first consider the case where $n=3$. We have $3$ choices of $2$ edges, which is never a $2$-matching:
+1. $(1,2),(2,3)$: Replace $(2,3)$ with $(3,4)$.
+2. $(1,2),(1,3)$: Replace $(1,2)$ with $(2,4)$.
+3. $(1,3),(2,3)$: Replace $(1,3)$ with $(1,4)$.
+This is clearly invertible; Given a $2$-matching in $K_4$, it must contain one of the edges $(1,4),(2,4),(3,4)$, so we can follow the above in reverse to recover the original choice of edges, since a $2$-matching in $K_4$ is really determined by just one of the edges.
+Now, for arbitrary $n>3$, pick two edges $(i,j),(k,l)$ in $K_n$. If $i,j,k,l$ are distinct, then this is $2$-matching in $K_{n+1}$. Otherwise, we have $3$ distinct vertices $u<v<w$ (if we had two then we picked the same edge twice, which we can't do), so we have $K_3$ as a subgraph where we map $u\mapsto1,v\mapsto2,w\mapsto3$. We use the above selection for $K_3$, replacing $4$ with $n+1$, and this gives a $2$-matching in $K_{n+1}$.
+To prove that this process is invertible, start with a $2$-matching in $K_{n+1}$. If the vertices don't involve $n+1$, we have our choice of edges in $K_n$. Otherwise, we have the vertices $u<v<w<n+1$, so we know the mapping into $K_4$ was $u\mapsto1,v\mapsto2,w\mapsto3,n+1\mapsto4$, and thus we can recover the original choice of edges in $K_n$.
+Since we have produced a bijection between pairs of edges in $K_n$ and $2$-matchings in $K_{n+1}$, this proves the combinatorial identity.
+

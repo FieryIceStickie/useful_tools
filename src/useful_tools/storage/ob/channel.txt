@@ -1,0 +1,47 @@
+Let $\mathbb{R}^{+}_{0}=\mathbb{R}^{+}\cup \{ 0 \}$, and define for $I \subseteq \mathbb{R}$ the set $A_{I}=\{ re^{i\theta}: r \in \mathbb{R}^{+}_{0},\theta \in I \}$ and for $k \in \mathbb{R}^{+}$ the set $B_{k}=\{ x+iy: x,y \in \mathbb{R},| x-y |<k \}$. We want to find all polynomials $p \in \mathbb{C}[z]$ such that $p\left( A_{\left[ 0,\frac{\pi}{41} \right]} \right)\subseteq B_{2025}$.
+
+Suppose we have a polynomial $p \in \mathbb{C}[z]$ such that $p\left( A_{I} \right)\subseteq B_{k}$, where $I=\left[ 0,\frac{\pi}{41} \right]$ and $k=2025$. One can see that $B_{k}$ is a diagonal channel along $y=x$ with radius $\frac{2025}{\sqrt{ 2 }}$. To make it easier to work with this region, we rotate it so it goes along $y=0$ instead. Mathematically, we have $p(z)=s(z)+it(z)$ for $s,t \in \mathbb{R}[z]$, which is given by taking the real and imaginary parts of each coefficient respectively. Define $q(z)=e^{-i \frac{\pi}{4}}p(z)$, such that
+$$
+\begin{align*}
+q(z)&= \frac{1}{\sqrt{ 2 }}(1-i)(s(z)+it(z))\\
+&= \underbrace{ \frac{s(z)+t(z)}{\sqrt{ 2 }} }_{ u(z) }-i \underbrace{ \frac{s(z)-t(z)}{\sqrt{ 2 }} }_{ v(z) },
+\tag*{}\end{align*}
+$$
+noting that $u,v \in \mathbb{R}[z]$. From the definition of $B_{k}$, we get that for $x \in \mathbb{R}$ (so that $s(x),t(x) \in \mathbb{R}$),
+$$
+\begin{align*}
+p(x) \in B_{k} &\iff | s(x)-t(x) | < k\\
+&\iff | \imag (q(x)) |< \frac{k}{\sqrt{ 2 }}. 
+\tag*{}\end{align*}
+$$
+If $v$ had degree $\ge1$, then as $x\to \infty,| v(x)|  \to \infty$, which would be a contradiction, so $v$ must be a constant polynomial, say $v(x)=C$ for some $C \in \left( -\frac{k}{\sqrt{ 2 }},\frac{k}{\sqrt{ 2 }} \right)$. So $q$ is of the form
+$$
+\begin{align*}
+q(z)=u(z)+iC.
+\tag*{}\end{align*}
+$$
+So we've reduced the problem to finding $q$ that maps $A_{I}$ to the region of the complex plane where $| \imag(q(z)) |< \frac{k}{\sqrt{ 2 }}$.
+
+Suppose $u(z)$ has degree $n\ge1$. Then we can write
+$$
+\begin{align*}
+\imag(u(re^{i\theta}))&=\imag \left( \sum_{k=0}^{n} u_{n}r^{k}e^{ik\theta} \right)\\
+&=\sum_{k=0}^{n} u_{n}r^{k}\sin(k\theta).
+\tag*{}\end{align*}
+$$
+Since $n\ge1$, we can find $\theta \in [0,\frac{\pi}{41}]$ (or in general any open set, as $\sin$ cannot be identically zero on an open set) such that $\sin(n\theta)\neq0$, and as $r\to \infty$ the leading term dominates, so for such a $\theta$,
+$$
+\begin{align*}
+\lim_{ r \to \infty }|\imag(u(re^{i\theta}))|\to \infty.
+\tag*{}\end{align*}
+$$
+This would contradict that $q$ maps $A_{I}$ to the aforementioned region, so $u$ is also a constant polynomial. This implies that $q$, and thus $p$, are both constant polynomials. It's quite obvious that we need the constant for $p$ to be inside $B_{k}$, and that this is a sufficient condition, so for the stated problem the only polynomials are
+$$
+\begin{align*}
+p(z)=C
+\tag*{}\end{align*}
+$$
+for some $C \in B_{2025}$. 
+
+---
+As an interesting side note, I first misinterpreted the question as asking about $A_{\left\{  0,\frac{\pi}{41}  \right\}}$ rather than $A_{\left[ 0,\frac{\pi}{41} \right]}$, which has a slighter richer solution set. Using the analysis above, it would be sufficient for $\sin(k\theta)=0$ for all $k$ where $u_{k}\neq0$, so all polynomials of the form $u(z)=g(z^{41})$ for some $g \in \mathbb{R}[z]$ would work as well.

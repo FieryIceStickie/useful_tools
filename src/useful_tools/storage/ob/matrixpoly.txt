@@ -1,0 +1,86 @@
+We want to show that for any polynomial $f(x)=(p_{1}-x)(p_{2}-x)\dots(p_{n}-x)$, we have that
+$$
+\begin{align*}
+f(x)-xf'(x)&=\begin{vmatrix}
+p_{1} & x & \dots & x \\
+x & p_{2} & \dots & x \\
+\vdots & \vdots & \ddots & \vdots \\
+x & x & \dots & p_{n}
+\end{vmatrix}.
+\tag*{}\end{align*}
+$$Firstly, we want to show an equality between two polynomials, so we should check the degrees first. The determinant is a polynomial in $x$ of degree $n$, and the left is a polynomial in $x$ of degree $n$, so the degrees do match. Thus, it suffices to show that the polynomials agree at $n+1$ points.
+
+We'll assume for now that $p_{1},\dots,p_{n}$ are all distinct and nonzero. Then, $n$ of the points we choose will be $x=p_{1},\dots,p_{n}$, and our last point will be $x=0$. For $x=0$, we have
+$$
+\begin{align*}
+\begin{vmatrix}
+p_{1} & 0 & \dots & 0 \\
+0 & p_{2} & \dots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & p_{n} \\
+\end{vmatrix}=\prod_{i=1}^{n}p_{i}=f(0)-0f'(0),
+\tag*{}\end{align*}
+$$
+as required.
+Now, when $x=p_{i}$, we subtract row $i$ from every other row, which looks like
+$$
+\begin{align*}
+\begin{vmatrix}
+p_{1} & p_{i} & \dots & p_{i} \\
+p_{i} & p_{2} & \dots & p_{i} \\
+\vdots & \vdots & \ddots & \vdots \\
+p_{i} & p_{i} & \dots & p_{n} \\
+\end{vmatrix}&=
+\begin{vmatrix}
+p_{1}-p_{i} & 0 & \dots & 0 & \dots & 0 \\
+0 & p_{2}-p_{i} & \dots & 0 & \dots & 0  \\
+\vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+p_{i} & p_{i} & \dots & p_{i} & \dots & p_{i} \\
+\vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & 0 & \dots & p_{n}-p_{i}.
+\end{vmatrix}
+\tag*{}\end{align*}
+$$
+We then do Laplace expansion on the $i$-th column, noting that only the $i$-th row is nonzero. The corresponding minor is diagonal with entries $p_{1}-p_{i},\dots,p_{n}-p_{i}$ excluding $p_{i}$, so noting that since the coefficient is at $(i,i)$, the parity is even and we don't have a sign, we get that
+$$
+\begin{align*}
+\begin{vmatrix}
+p_{1} & p_{i} & \dots & p_{i} \\
+p_{i} & p_{2} & \dots & p_{i} \\
+\vdots & \vdots & \ddots & \vdots \\
+p_{i} & p_{i} & \dots & p_{n} \\
+\end{vmatrix}&=p_{i}\prod_{j\neq i}(p_{j}-p_{i}).
+\tag*{}\end{align*}
+$$
+On the other hand, noting the product rule we have
+$$
+\begin{align*}
+f(p_{i})-p_{i}f'(p_{i})&=-p_{i}f'(p_{i})\\
+&=p_{i} \sum_{j=1}^{n} \prod_{k\neq j}(p_{k}-p_{i}).
+\tag*{}\end{align*}
+$$
+The only nonzero term is when $j=i$, so
+$$
+\begin{align*}
+f(p_{i})-p_{i}f'(p_{i})&=p_{i}\prod_{k\neq i}(p_{k}-p_{i}),
+\tag*{}\end{align*}
+$$
+as required.
+That proves the claim for when $p_{1},\dots,p_{n}$ are nonzero and distinct.
+
+To show the claim for arbitrary $p_{1},\dots,p_{n}$, note that the function
+$$
+\begin{align*}
+g(p_{1},\dots,p_{n},x)&=f(x)-xf'(x)-\begin{vmatrix}
+p_{1} & x & \dots & x \\
+x & p_{2} & \dots & x \\
+\vdots & \vdots & \ddots & \vdots \\
+x & x & \dots & p_{n} \\
+\end{vmatrix}
+\tag*{}\end{align*}
+$$
+is continuous. Since $S \subseteq \mathbb{C}^{n+1}$ where$$
+\begin{align*}
+S&=\{ (p_{1},\dots,p_{n},x) \in \mathbb{C}^{n+1}\mid p_{1},\dots,p_{n}  \text{ are nonzero and distinct}\}
+\tag*{}\end{align*}
+$$ is a dense subset (Euclidean topology) of $\mathbb{C}^{n+1}$, as $g$ vanishes on $S$ it must vanish on all of $\mathbb{C}^{n+1}$. Alternatively, since $g$ is a polynomial we could use the identity theorem as $S$ is an open set. Since $g$ vanishes on all of $\mathbb{C}^{n+1}$ is equivalent to the desired claim, we're done.

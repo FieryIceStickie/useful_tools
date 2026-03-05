@@ -1,0 +1,178 @@
+We want to evaluate the integral (presumably the Cauchy principal value, otherwise the integral diverges)
+$$
+\begin{align*}
+I(a,b)&=\int_{0}^{\infty} \frac{x \tan(ax)}{x^{2}+b^{2}}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Before we start, a quick substitution $t=ax$ tells us that
+$$
+\begin{align*}
+I(a,b)&=\int_{0}^{\infty} \frac{t \tan(t)}{t^{2}+(ab)^{2}}\,\mathrm{d}t\\
+&=I(1,ab),
+\tag*{}\end{align*}
+$$
+and so it suffices to evaluate for arbitrary $a>0$
+$$
+\begin{align*}
+I(1,a)&=\int_{0}^{\infty} \frac{x \tan(x)}{x^{2}+a^{2}}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+In fact, just to make the numbers nicer we'll want to consider
+$$
+\begin{align*}
+I\left( \frac{\pi}{2},a \right)&= \int_{0}^{\infty} \frac{x \tan\left( \frac{\pi}{2}x \right)}{x^{2}+a^{2}}\,\mathrm{d}x.
+\tag*{}\end{align*}
+$$
+Now let's begin; I'll yap a bit here about motivation, so if you don't care then skip to the section break. The main idea is that ideally, since the integrand is even, we would like to extend to $(-\infty,\infty)$ and then use the residue theorem with a suitable semicircular contour. However, this runs into a few issues: We have a whole bunch of poles at the odd integers, and since
+$$
+\begin{align*}
+\tan(z)&= -i\frac{e^{2iz}-1}{e^{2iz}+1}\\
+&= i - \frac{2i}{1+e^{-2iz}}\\
+\tan\left( \frac{\pi}{2}z \right)&=i- \frac{2i}{1+e^{-i \pi z}}.
+\tag*{}\end{align*}
+$$
+For $z$ of large magnitude away from the poles, the latter term goes to $0$ (I'll get into the specifics later), so $| \tan\left( \frac{\pi}{2}z \right) | \to1$, which means that if we just take the semicircular contour with the integrand as is, it won't vanish.
+
+The first issue with the poles is a non-issue: we have to take the Cauchy principal value anyways for the initial integral to make sense, and since all the poles are simple poles we can use a variant of the residue theorem which allows simple poles on the contour of integration, each contributing half of their residue. For those who aren't familiar with this technique, I'll do a brief derivation below.
+
+The second issue with the integrand not vanishing is solved with a normalisation trick. If we move the $i$ to the other side, we get
+$$
+\begin{align*}
+\tan\left( \frac{\pi}{2}z \right)-i&= -\frac{2i}{1+e^{-i \pi z}},
+\tag*{}\end{align*}
+$$
+and this goes to $0$ like we want. Thus, rather than using the residue theorem on the integrand directly, we instead consider the integral
+$$
+\begin{align*}
+\int_{-\infty}^{\infty} \frac{z \left( \tan\left( \frac{\pi}{2}z \right)-i \right)}{z^{2}+a^{2}}\,\mathrm{d}z.
+\tag*{}\end{align*}
+$$
+---
+Now onto the actual integrating. Let
+$$
+\begin{align*}
+f(z)&= \frac{z\left( \tan\left( \frac{\pi}{2}z \right)-i \right)}{z^{2}+a^{2}}.
+\tag*{}\end{align*}
+$$
+The poles of $f$ are at every odd integer and $\pm ia$, all simple poles. For a given integer $N\ge1$ and $r \in(0,1)$, let $S=\{ n \in(-2N,2N)\mid n \text{ odd} \}$, let $\Gamma_{N,r}$ be the closed upper semicircular contour from $-2N$ to $2N$, with upper semicircles of radius $r$ at each $n \in S$, traversed counterclockwise. Let $\Omega_{N}$ denote the semicircle of radius $2N$, and $\gamma_{n,r}$ denote the semicircle of radius $n$ centred at $n$. Then by the residue theorem
+$$
+\begin{align*}
+\int_{\Gamma_{N,r}}f(z) \,\mathrm{d}z&= 2\pi i \operatorname{Res}(f,ia)\\
+&=2\pi i \frac{ia\left(   \tan\left( \frac{\pi}{2}ia \right)-i\right)}{2ia}\\
+&=\pi\left( 1-\tanh\left( \frac{\pi}{2}a \right) \right)\\
+&= \frac{2\pi}{e^{\pi a}+1}.
+\tag*{}\end{align*}
+$$
+At the same time, let $S=\{ n \in (-2N,2N) \mid n \text{ odd} \}$. Letting $r\to0^{+}$ and taking the Cauchy principal value we have
+$$
+\begin{align*}
+\lim_{ r \to 0^{+} } \int_{\Gamma_{n,r}}f(z) \,\mathrm{d}z&= \int_{-2N}^{2N} f(z)\,\mathrm{d}z+\sum_{n \in S}\lim_{ r \to 0^{+} } \left( \int_{\gamma_{n,r}} f(z)\,\mathrm{d}z \right)+\int_{\Omega_{N}} f(z)\,\mathrm{d}z.
+\tag*{}\end{align*}
+$$
+For each $n \in S$, $f$ has a simple pole there, so we can write
+$$
+\begin{align*}
+f(z)&= \frac{\operatorname{Res}(f,n)}{z-n}+g(z)
+\tag*{}\end{align*}
+$$
+for $g$ holomorphic in an open disk around $n$, and thus
+$$
+\begin{align*}
+\int_{\gamma_{n,r}} f(z)\,\mathrm{d}z&= \int_{\gamma_{n,r}} \frac{\operatorname{Res}(f,n)}{z-n}\,\mathrm{d}z+\int_{\gamma_{n,r}} g(z)\,\mathrm{d}z.
+\tag*{}\end{align*}
+$$
+Since $g$ is holomorphic, as $r\to0^{+}$ the latter integral goes to $0$, while the former is the change in angle, which for our choice of contour is $-i \pi$ since the semicircle is traversed clockwise. Thus
+$$
+\begin{align*}
+\lim_{ r \to 0^{+} } \int_{\gamma_{n,r}} f(z)\,\mathrm{d}z&=-i \pi\operatorname{Res}(f,n).
+\tag*{}\end{align*}
+$$
+Since the poles come from $\tan$, the $-i$ we added for normalisation doesn't affect the residue, so the residue is given by
+$$
+\begin{align*}
+\operatorname{Res}(f,n)&=\lim_{ z \to n } \frac{z \tan\left( \frac{\pi}{2}z \right)}{z^{2}+a^{2}}(z-n)\\
+&= \frac{n}{n^{2}+a^{2}}\lim_{ z \to n } \frac{z-n}{\cot\left( \frac{\pi}{2}z \right)}\\
+&= \frac{n}{n^{2}+a^{2}}\lim_{ z \to n } \frac{1}{-\frac{\pi}{2}\csc^{2}\left( \frac{\pi}{2}z \right)} \\
+&=-\frac{2}{\pi} \frac{n}{n^{2}+a^{2}}.
+\tag*{}\end{align*}
+$$
+Since $\operatorname{Res}(f,n)=-\operatorname{Res}(f,-n)$, the second term vanishes. 
+
+As for the third term, let $R=2N$. For sufficiently large $R$, we have
+$$
+\begin{align*}
+\left| f(z) \right| &=\left| \frac{z \left( \tan\left( \frac{\pi}{2}z \right)-i \right)}{z^{2}+a^{2}} \right|\\
+&\le \frac{2R}{R^{2}-a^{2}}\left| \frac{1}{1+e^{-i \pi z}} \right|.
+\tag*{}\end{align*}
+$$
+Letting $z=R(\cos\theta+i\sin\theta)$, we have
+$$
+\begin{align*}
+\left| \frac{1}{1+e^{-i \pi R(\cos\theta+i\sin\theta)}} \right| &= \left| \frac{1}{1+e^{\pi R\sin\theta}e^{-2i \pi N\cos\theta}} \right|.
+\tag*{}\end{align*}
+$$
+If we naively use the ML-lemma right now, then we won't get the result we want due to spikes near the real axis, so we instead cut the contour and consider the sector for $\theta \in(\varepsilon,\pi-\varepsilon)$ separately for $\varepsilon=\frac{1}{\sqrt{ R }}$. The reverse triangle inequality gives us
+$$
+\begin{align*}
+\left| \frac{1}{1+e^{-i \pi z}} \right|&\le \frac{1}{e^{\pi R \sin\theta}-1}.
+\tag*{}\end{align*}
+$$
+Inside the sector, with the inequality $\sin(x)\ge x-\frac{x^{3}}{6}$ for positive $x$ near $0$ (apply the Lagrange form of the remainder in the Taylor series expansion up to $x^{3}$) we have
+$$
+\begin{align*}
+e^{\pi R \sin\theta}&\ge e^{\pi R \sin\left( \frac{1}{\sqrt{ R }} \right)}\\
+&\ge e^{\pi \left( \sqrt{ R }-\frac{1}{6\sqrt{ R }} \right)},
+\tag*{}\end{align*}
+$$
+so for sufficiently large $R$ we get
+$$
+\begin{align*}
+\left| \frac{1}{1+e^{-i \pi z}} \right|&\le \frac{1}{e^{\pi \left( \sqrt{ R }-\frac{1}{6\sqrt{ R }} \right)}-1}
+\tag*{}\end{align*}
+$$
+inside the sector. For the remaining portions of the contour, for $\theta \in(0,\varepsilon) \cup(\pi-\varepsilon,\pi)$, we use the fact that we chose $R$ to be even to show that $e^{-2\pi iN \cos\theta}=e^{2\pi iN(1-\cos\theta)}=e^{4\pi iN\sin^{2}\left( \frac{\theta}{2} \right)}$, so
+$$
+\begin{align*}
+\lim_{ \theta \to 0 } \left| \frac{1}{1+e^{\pi R\sin\theta}e^{4\pi iN \sin^{2}\left( \frac{\theta}{2} \right)}} \right|&=\frac{1}{2}.
+\tag*{}\end{align*}
+$$
+Thus for sufficiently large $R$ this is bounded by $1$. Similarly we have $e^{-2\pi iN \cos\theta}=e^{-4\pi iN \cos^{2}\left( \frac{\theta}{2} \right)}$, so
+$$
+\begin{align*}
+\lim_{ \theta \to \pi } \left| \frac{1}{1+e^{\pi R \sin\theta}e^{-4\pi iN\cos^{2}\left( \frac{\theta}{2} \right)}} \right|=\frac{1}{2},
+\tag*{}\end{align*}
+$$
+thus we again have an upper bound of $1$. Putting all that together, using the ML-lemma we get that
+$$
+\begin{align*}
+\left| \int_{\Omega_{N}} f(z)\,\mathrm{d}z \right|&\le \frac{2R^{2}}{R^{2}-a^{2}}\left( \frac{2}{\sqrt{ R }}+ \frac{\pi-\frac{2}{\sqrt{ R }}}{e^{\pi \left( \sqrt{ R }-\frac{1}{6\sqrt{ R }} \right)}-1} \right),
+\tag*{}\end{align*}
+$$
+which goes to $0$ as $R\to \infty$.
+
+As for our normalisation term, we note that
+$$
+\begin{align*}
+\int_{-2N}^{2N} -\frac{iz}{z^{2}+a^{2}}\,\mathrm{d}z&=0
+\tag*{}\end{align*}
+$$
+due to even symmetry of the integrand. Hence, taking $N\to \infty$ we get that
+$$
+\begin{align*}
+\int_{-\infty}^{\infty} \frac{z \tan\left( \frac{\pi}{2}z \right)}{z^{2}+a^{2}}\,\mathrm{d}z&= \frac{2\pi}{e^{\pi a}+1}\\
+\int_{0}^{\infty} \frac{z \tan\left( \frac{\pi}{2}z \right)}{z^{2}+a^{2}}\,\mathrm{d}z&= \frac{\pi}{e^{\pi a}+1}
+\tag*{}\end{align*}
+$$
+Rewriting in terms of the original notation, we get
+$$
+\begin{align*}
+I(a,b)&=I\left( \frac{\pi}{2}, \frac{2}{\pi}ab \right)\\
+&=\frac{\pi}{e^{2ab}+1},
+\tag*{}\end{align*}
+$$
+and thus
+$$
+\begin{align*}
+\int_{0}^{\infty} \frac{x \tan(ax)}{x^{2}+b^{2}}\,\mathrm{d}x&= \frac{\pi}{e^{2ab}+1}.
+\tag*{}\end{align*}
+$$

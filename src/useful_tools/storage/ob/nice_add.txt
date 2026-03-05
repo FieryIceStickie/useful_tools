@@ -1,0 +1,59 @@
+We want to find all functions $f:\mathbb{R}\to \mathbb{R}$ such that
+$$
+\begin{align*}
+f(f(x)+y)&=3x+f(y)\quad \forall x,y \in \mathbb{R},\\
+\forall x \in \mathbb{R}^{+},&\exists y \in \mathbb{R}^{+},f(y)=x.
+\tag*{}\end{align*}
+$$
+Firstly, letting $x=0$ we get
+$$
+\begin{align*}
+f(f(0)+y)=f(y)\quad \forall y \in \mathbb{R},
+\tag*{(1)}\end{align*}
+$$
+and so we have
+$$
+\begin{align*}
+3x+f(y)&=f(f(x)+y)\\
+&=f(f(x+f(0))+y)\\
+&=3(x+f(0))+f(y),
+\tag*{(2)}\end{align*}
+$$
+and thus $f(0)=0$.
+
+Setting $y=f(0)$, we immediately get that
+$$
+\begin{align*}
+f(f(x))=3x\quad \forall x \in \mathbb{R}.
+\tag*{(3)}\end{align*}
+$$
+If we apply $f$ again, we get
+$$
+\begin{align*}
+f(3x)&=f(f(f(x)))\\
+&=3f(x),
+\tag*{(4)}\end{align*}
+$$
+and using this, we can substitute $x= f(\frac{z}{3})$ for any $z \in \mathbb{R}$ in the original functional equation to get
+$$
+\begin{align*}
+f\left( f\left( f\left( \frac{z}{3} \right) \right)+y \right)&=3f\left( \frac{z}{3} \right)+f(y)\\
+f(z+y)&=f(z)+f(y)\quad \forall z,y \in \mathbb{R},
+\tag*{(5)}\end{align*}
+$$
+and so $f$ satisfies Cauchy's functional equation.
+
+Now, let's take a Hamel basis $\mathcal{B}$ for $\mathbb{R}$ as a vector space over $\mathbb{Q}$. For each $b_{i} \in \mathcal{B}$, we have $f(x)=c_{i}x$ for all $x \in b_{i}\mathbb{Q}$, where $c_{i}=\frac{f(b_{i})}{b_{i}}$. By $(3)$, we have that $c_{i}^{2}=3$, so $c_{i}=\pm\sqrt{ 3 }$. Note that $f$ is injective, since if $f(x)=f(y)$ then $f(f(x))=f(f(y))\implies3x=3y\implies x=y$. 
+
+Suppose we have $b_{i},b_{j}$ such that $c_{i}=\sqrt{ 3 },c_{j}=-\sqrt{ 3 }$. Then we can pick $p,q \in \mathbb{Q}$ such that $qb_{j}< -pb_{i} < 0$, so that $pb_{i}+qb_{j}<0$ and
+$$
+\begin{align*}
+f(pb_{i}+qb_{j})&=\sqrt{ 3 }(pb_{i}-qb_{j})>0.
+\tag*{}\end{align*}
+$$
+By injectivity, this contradicts the second condition in the assumptions, so either $c_{i}=\sqrt{ 3 }$ or $c_{i}=-\sqrt{ 3 }$ for all $c_{i}$. Clearly, $c_{i}=-\sqrt{ 3 }$ doesn't satisfy the second condition either, so $c_{i}=\sqrt{ 3 }$ is the only solution and thus the only solution to the functional equation is
+$$
+\begin{align*}
+f(x)=\sqrt{ 3 }x\quad \forall x \in \mathbb{R}.
+\tag*{}\end{align*}
+$$

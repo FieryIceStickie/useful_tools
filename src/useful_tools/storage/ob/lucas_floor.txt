@@ -1,0 +1,26 @@
+We want to show that
+$$
+\begin{align*}
+\binom{ k }{ p }\equiv \left\lfloor  \frac{k}{p}  \right\rfloor \pmod p
+\tag*{}\end{align*}
+$$
+for all odd primes $p$.
+
+I'm not sure why it says odd primes $p$, this holds for $p=2$ as well. Writing $k=\sum_{i=1}^{d} c_{k}p^{k}$ for $0\le c_{i}<p$, we have
+$$
+\begin{align*}
+\frac{k}{p}&= \frac{\sum_{i=1}^{d}c_{k}p^{k}}{p}\\
+&=\frac{c_{0}}{p}+c_{1}+p\left( \sum_{i=2}^{d}c_{k}p^{k-2} \right)\\
+\left\lfloor  \frac{k}{p}  \right\rfloor&=c_{1}+p\left( \sum_{i=2}^{d}c_{k}p^{k-2} \right)\\
+\left\lfloor \frac{k}{p} \right\rfloor &\equiv c_{1} \pmod p.
+\tag*{}\end{align*}
+$$
+Now, applying Lucas' theorem, noting that $p$ is $10_{p}$ in base $p$, we get that
+$$
+\begin{align*}
+\binom{ k }{ p }&\equiv \binom{ c_{0} }{ 0 }\binom{ c_{1} }{ 1 } \binom{ c_{2} }{ 0 } \dots \binom{ c_{d} }{ 0 }\\
+&\equiv c_{1}\\
+&\equiv \left\lfloor  \frac{k}{p}  \right\rfloor \pmod p,
+\tag*{}\end{align*}
+$$
+as required.
